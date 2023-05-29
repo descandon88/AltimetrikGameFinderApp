@@ -1,3 +1,10 @@
+:root {
+    --Light_Violet: rgba(191,95,255,1);
+    --blue: #00b;
+    --fullwidth: 100%;
+  }
+
+
 .loginContainer {
     
 position: absolute;
@@ -110,7 +117,10 @@ section.textSection > p.logP {
     right: 0%;
     top: 0%;
     bottom: 0%;
-    background: #4CC986;
+    /* background: #4CC986; */
+    /* background-color:rgba(191, 95, 225, 1); */
+    background-color: var(--Light_Violet);
+    
     border-radius: 6px;
     margin-top: 24px;
 }
@@ -134,7 +144,10 @@ section.textSection > p.logP {
 }
 
 .forgotPasswordli {
-    color: rgba(95, 225, 155, 1);
+    /* color: rgba(95, 225, 155, 1); */
+    /* color:  rgba(191, 95, 225, 1); */
+    color: var(--Light_Violet);
+
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
@@ -142,7 +155,7 @@ section.textSection > p.logP {
     line-height: 19px;
 }
 
-div.inputsContainer > ul {
+div.inputsContainer > ul.rememberMeUl {
     margin-top: 13px;
     width: 100%;
     display: flex;
@@ -151,3 +164,34 @@ div.inputsContainer > ul {
     align-items: center;
     align-self: center;
 }
+
+/* No register Yet Block */
+div.inputsContainer > ul.notRegisterYetUl {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    align-content: center;
+    margin-top: 32px;
+
+}
+.notRegisterYetLi {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: #FFFFFF;
+    padding: 0.2em;
+}
+
+.registerNowLi {
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+    color: var(--Light_Violet);
+    padding: 0.2em;
+}
+
+
