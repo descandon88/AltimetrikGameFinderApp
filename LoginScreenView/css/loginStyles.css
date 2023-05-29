@@ -1,0 +1,153 @@
+.loginContainer {
+    
+position: absolute;
+width: 462px;
+height: 702px;
+left: 878px;
+top: 178px;
+
+background: #303030;
+background-blend-mode: overlay;
+backdrop-filter: blur(5px);
+border-radius: 12px;
+}
+
+.loginContainer {display: flex; flex-direction: column;}
+.textSection {display: flex;flex-direction: column;}
+
+section.textSection > p.welcomeP {
+    /* position: absolute; */
+    height: 27px;
+    left: 64.44%;
+    right: 10.42%;
+    top: calc(50% - 27px/2 - 280.5px);
+    font-family: 'Exo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    /* identical to box height */
+    text-align: center;
+    color: #FFFFFF;
+    margin-bottom: 4px;
+    margin-top:40px
+}
+
+section.textSection > p.logP {
+    /* position: absolute; */
+    /* width: 362px; */
+    display: flex;
+    justify-content: center;
+
+    width: 100%;
+    height: 28px;
+    left: 928px;
+    top: 253px;
+
+    font-family: 'Exo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 16px;
+    line-height: 21.26px;
+    display: flex;
+    align-items: center;
+    text-align: center;
+
+    color: #FFFFFF;
+
+    height: 28px;
+    left: 928px;
+    /* top: 253px; */
+    margin-top:4px
+
+
+}
+
+.emailInput {
+    
+    position: relative;
+    height: 27px;
+    /* left: 64.44%; */
+    /* right: 10.42%; */
+    top: calc(50% - 27px/2 - 280.5px);
+
+    font-family: 'Exo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 20px;
+    line-height: 27px;
+    /* identical to box height */
+    text-align: center;
+    color: #FFFFFF;
+    border-radius: 4px;
+    width: 362px;
+    height: 47px;
+    border-radius: 4px;
+    margin-bottom: 16px;
+}
+
+.passwordInput {   
+    position: relative;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #FFFFFF;
+    border-radius: 4px;
+    width: 362px;
+    height: 47px;
+    border-radius: 4px;
+    margin-left: 50px;
+    margin-right: 50px;
+}
+
+.logInButton {
+    width: 362px;
+    height: 47px;
+    border-radius: 6px;
+    position: relative;
+    left: 0%;
+    right: 0%;
+    top: 0%;
+    bottom: 0%;
+    background: #4CC986;
+    border-radius: 6px;
+    margin-top: 24px;
+}
+
+.inputsContainer {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: 100%;
+   align-items: center;
+}
+
+.rememberMeli {
+    color: rgba(255, 255, 255, 1);
+    
+    font-family: 'Exo';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+.forgotPasswordli {
+    color: rgba(95, 225, 155, 1);
+    font-family: 'Open Sans';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 19px;
+}
+
+div.inputsContainer > ul {
+    margin-top: 13px;
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    align-self: center;
+}
