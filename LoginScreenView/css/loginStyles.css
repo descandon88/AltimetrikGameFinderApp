@@ -1,55 +1,88 @@
+
+/* COLOR GLOBAL VARIABLES */
 :root {
     --Light_Violet: rgba(191,95,255,1);
-    --blue: #00b;
+    --white: rgba(255, 255, 255, 1);
+    --backgroundLoginColor: rgb(23,23,23,0.8);
     --fullwidth: 100%;
   }
 
+  /*INSERT BACKGROUND IMAGE INTO THE BODY  */
+body {
+    background-image: url("../img/img_background/BG@2x.png");
+    background-size: cover;
 
-.loginContainer {
-    
-position: absolute;
-width: 462px;
-height: 702px;
-left: 878px;
-top: 178px;
-
-background: #303030;
-background-blend-mode: overlay;
-backdrop-filter: blur(5px);
-border-radius: 12px;
+}
+/****************** LOGO STYLES *****************/
+.logoContainer {
+    display: flex;
+    flex-direction: row;
+    /* margin-top:25.24px; */
+    margin-left:28px;
 }
 
-.loginContainer {display: flex; flex-direction: column;}
-.textSection {display: flex;flex-direction: column;}
+.logoRight {
+    margin-top:34.75px;
+    display:flex;
+    flex-direction:column;
+    justify-content: center;
+}
+.logoLeft {
+    margin-top:25.24px;
+    display:flex;
+    justify-content: center;
+}
+
+/* **************** LOGIN STYLES ****************/
+.loginContainer {
+    
+    position: absolute;
+    width: 462px;
+    height: 702px;
+    left: 878px;
+    top: 178px;
+
+    background: var(--backgroundLoginColor);
+    background-blend-mode: overlay;
+    backdrop-filter: blur(5px);
+    border-radius: 12px;
+}
+
+.loginContainer {display: flex; flex-direction: column; left: 61%;}
+.textSection {display: flex;flex-direction: column; height: 135px; align-items: center; justify-content: center;}
+
 
 section.textSection > p.welcomeP {
     /* position: absolute; */
-    height: 27px;
-    left: 64.44%;
-    right: 10.42%;
-    top: calc(50% - 27px/2 - 280.5px);
-    font-family: 'Exo';
+    /* height: 27px; */
+    height: 60%;
+    width: 100%;
+    /* left: 64.44%; */
+    /* right: 10.42%; */
+    /* top: calc(50% - 27px/2 - 280.5px); */
+    font-family: 'Archivo';
     font-style: normal;
     font-weight: 700;
     font-size: 20px;
     line-height: 27px;
     /* identical to box height */
     text-align: center;
-    color: #FFFFFF;
-    margin-bottom: 4px;
-    margin-top:40px
+    color: var(--white);
+    /* margin-bottom: 4px;
+    margin-top:40px */
+    display: flex;
+    flex-direction: column;
+    justify-content: flex-end;
 }
 
 section.textSection > p.logP {
     /* position: absolute; */
     /* width: 362px; */
-    display: flex;
-    justify-content: center;
-
     width: 100%;
-    height: 28px;
-    left: 928px;
-    top: 253px;
+    /* height: 28px; */
+    height: 40%;
+    /* left: 928px;
+    top: 253px; */
 
     font-family: 'Exo';
     font-style: normal;
@@ -57,15 +90,17 @@ section.textSection > p.logP {
     font-size: 16px;
     line-height: 21.26px;
     display: flex;
+    flex-direction: column;
     align-items: center;
     text-align: center;
+    justify-content: flex-start;
 
     color: #FFFFFF;
 
-    height: 28px;
-    left: 928px;
+    /* height: 28px;
+    left: 928px; */
     /* top: 253px; */
-    margin-top:4px
+    /* margin-top:4px */
 
 
 }
@@ -78,19 +113,26 @@ section.textSection > p.logP {
     /* right: 10.42%; */
     top: calc(50% - 27px/2 - 280.5px);
 
-    font-family: 'Exo';
+    /* font-family: 'Exo'; */
+    font-family: 'Archivo';
     font-style: normal;
-    font-weight: 700;
-    font-size: 20px;
-    line-height: 27px;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: 130%;
+
+    /* font-style: normal; */
+    /* font-weight: 700; */
+    /* font-size: 20px; */
+    /* line-height: 27px; */
     /* identical to box height */
-    text-align: center;
+    text-align: left;
     color: #FFFFFF;
     border-radius: 4px;
     width: 362px;
     height: 47px;
     border-radius: 4px;
     margin-bottom: 16px;
+    
 }
 
 .passwordInput {   
@@ -134,9 +176,10 @@ section.textSection > p.logP {
 }
 
 .rememberMeli {
-    color: rgba(255, 255, 255, 1);
+    /* color: rgba(255, 255, 255, 1); */
+    color: var(--white);
     
-    font-family: 'Exo';
+    font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
     font-size: 14px;
@@ -155,7 +198,7 @@ section.textSection > p.logP {
     line-height: 19px;
 }
 
-div.inputsContainer > ul.rememberMeUl {
+form.inputsContainer > ul.rememberMeUl {
     margin-top: 13px;
     width: 100%;
     display: flex;
@@ -166,7 +209,7 @@ div.inputsContainer > ul.rememberMeUl {
 }
 
 /* No register Yet Block */
-div.inputsContainer > ul.notRegisterYetUl {
+form.inputsContainer > ul.notRegisterYetUl {
     display: flex;
     flex-direction: row;
     align-items: center;
