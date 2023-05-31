@@ -28,6 +28,7 @@ body {
     margin-left:28px;
 }
 
+
 .logoRight {
     margin-top:34.75px;
     display:flex;
@@ -56,8 +57,8 @@ body {
 }
 
 .loginContainer {display: flex; flex-direction: column; left: 61%; }
-.titleSection {display: flex;flex-direction: column; height: 135px; align-items: center; justify-content: center;}
-.loginOptionContainer {display: flex;flex-direction: column; height:277px; align-items:center;
+.titleSection {display: flex;flex-direction: column; height: 106px; align-items: center; justify-content: center;}
+.loginOptionContainer {display: flex;flex-direction: column; height:265px; align-items:center;
 justify-content: space-evenly; }
 
 .inputsContainer {
@@ -66,7 +67,9 @@ justify-content: space-evenly; }
     width: var(--fullwidth);
     height: var(--fullwidth);
    align-items: center;
-   height: 290px;
+   /* height: 290px; */
+   height: 331px;
+
 }
 
 
@@ -246,6 +249,50 @@ form.inputsContainer > ul.notRegisterYetUl {
     line-height: 19px;
     color: var(--Light_Violet);
     padding: 0.2em;
+}
+
+.lineSeparatorContainer {
+    display:flex;
+    flex-direction: row;
+}
+
+/******************* HRs and Or **********************/
+.lineSeparatorContainer{
+    display: flex;
+    flex-direction: row;
+    /* justify-content: space-around; */
+    width: 100%;
+    /* align-items: center;
+    align-content: center; */
+}
+
+div.lineSeparatorContainer > hr.lineSeparatorLeft {
+    /* color: var(--white); */
+    border-top: 1px solid var(--white);
+    width: 147.4px;
+    /* left: 20px;  */
+    top: 612.37109375px;
+    border-radius: 0px;
+    margin-left:48px;
+}
+
+div.lineSeparatorContainer > hr.lineSeparatorRight {
+    /* color: var(--white); */
+    border-top: 1px solid rgb(255, 255, 255,1);
+    width: 147.4px;
+    /* left: 928px; */
+    top: 612.37109375px;
+    border-radius: 0px;
+    margin-right:48px;
+
+}
+
+div.lineSeparatorContainer > p {
+    color: var(--white);
+    font-family: 'Open Sans';
+    font-size: 14px;
+    font-weight: 400;
+    text-align: center;
 }
 
 /* *****************LOGIN ACCOUNTS******************/
