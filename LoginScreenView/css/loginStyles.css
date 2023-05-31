@@ -1,5 +1,5 @@
 
-/* COLOR GLOBAL VARIABLES */
+/******** COLOR GLOBAL VARIABLES **********/
 :root {
     --Light_Violet: rgba(191,95,255,1);
     --white: rgba(255, 255, 255, 1);
@@ -9,8 +9,15 @@
 
   /*INSERT BACKGROUND IMAGE INTO THE BODY  */
 body {
-    background-image: url("../img/img_background/BG@2x.png");
+    background-image: url("../img/img_background/BG@3x.png");
     background-size: cover;
+      /* Full height */
+    height: 100vh;
+
+  /* Center and scale the image nicely */
+    background-position: center;
+    background-repeat: no-repeat;
+    /* background-size: cover; */
 
 }
 /****************** LOGO STYLES *****************/
@@ -53,10 +60,9 @@ body {
 
 
 section.textSection > p.welcomeP {
-    /* position: absolute; */
-    /* height: 27px; */
     height: 60%;
-    width: 100%;
+    /* width: 100%; */
+    width: var(--fullwidth);
     /* left: 64.44%; */
     /* right: 10.42%; */
     /* top: calc(50% - 27px/2 - 280.5px); */
@@ -78,7 +84,7 @@ section.textSection > p.welcomeP {
 section.textSection > p.logP {
     /* position: absolute; */
     /* width: 362px; */
-    width: 100%;
+    width: var(--fullwidth);
     /* height: 28px; */
     height: 40%;
     /* left: 928px;
@@ -170,8 +176,8 @@ section.textSection > p.logP {
 .inputsContainer {
     display: flex;
     flex-direction: column;
-    width: 100%;
-    height: 100%;
+    width: var(--fullwidth);
+    height: var(--fullwidth);
    align-items: center;
 }
 
@@ -200,7 +206,7 @@ section.textSection > p.logP {
 
 form.inputsContainer > ul.rememberMeUl {
     margin-top: 13px;
-    width: 100%;
+    width: var(--fullwidth);
     display: flex;
     flex-direction: row;
     justify-content: space-around;
