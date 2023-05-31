@@ -312,6 +312,7 @@ div.lineSeparatorContainer > p {
     border-color: var(--white);
     width: 362px;
     height: 47px;
+    border-width: 2px;
     border-radius: 4px;
     display: flex;
     flex-direction: row;
