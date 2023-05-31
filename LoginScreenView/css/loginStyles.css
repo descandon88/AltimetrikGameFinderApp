@@ -55,11 +55,22 @@ body {
     border-radius: 12px;
 }
 
-.loginContainer {display: flex; flex-direction: column; left: 61%;}
-.textSection {display: flex;flex-direction: column; height: 135px; align-items: center; justify-content: center;}
+.loginContainer {display: flex; flex-direction: column; left: 61%; }
+.titleSection {display: flex;flex-direction: column; height: 135px; align-items: center; justify-content: center;}
+.loginOptionContainer {display: flex;flex-direction: column; height:277px; align-items:center;
+justify-content: space-evenly; }
+
+.inputsContainer {
+    display: flex;
+    flex-direction: column;
+    width: var(--fullwidth);
+    height: var(--fullwidth);
+   align-items: center;
+   height: 290px;
+}
 
 
-section.textSection > p.welcomeP {
+section.titleSection > p.welcomeP {
     height: 60%;
     /* width: 100%; */
     width: var(--fullwidth);
@@ -81,7 +92,7 @@ section.textSection > p.welcomeP {
     justify-content: flex-end;
 }
 
-section.textSection > p.logP {
+section.titleSection > p.logP {
     /* position: absolute; */
     /* width: 362px; */
     width: var(--fullwidth);
@@ -110,13 +121,14 @@ section.textSection > p.logP {
 
 
 }
+/* **************** LOGIN STYLES: INPUTS STYLES ****************/
+/* *************************************************************/
 
 .emailInput {
     
-    position: relative;
+    /* position: relative; */
     height: 27px;
-    /* left: 64.44%; */
-    /* right: 10.42%; */
+ 
     top: calc(50% - 27px/2 - 280.5px);
 
     /* font-family: 'Exo'; */
@@ -173,13 +185,6 @@ section.textSection > p.logP {
     margin-top: 24px;
 }
 
-.inputsContainer {
-    display: flex;
-    flex-direction: column;
-    width: var(--fullwidth);
-    height: var(--fullwidth);
-   align-items: center;
-}
 
 .rememberMeli {
     /* color: rgba(255, 255, 255, 1); */
@@ -241,6 +246,55 @@ form.inputsContainer > ul.notRegisterYetUl {
     line-height: 19px;
     color: var(--Light_Violet);
     padding: 0.2em;
+}
+
+/* *****************LOGIN ACCOUNTS******************/
+/* *********************************************** */
+.loginOptionContainer {
+    display: flex;
+    flex-direction: column; 
+    height:277px;
+    align-items:center;
+    justify-content: space-evenly; 
+}
+
+
+
+.loginAccounts {
+    border-style: solid;
+    border-color: var(--white);
+    width: 362px;
+    height: 47px;
+    border-radius: 4px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+div.loginAccounts > p { 
+    color: var(--white);
+    font-family: 'Archivo';
+    font-style: normal;
+    font-weight: 700;
+    font-size: 18px;
+    line-height: 20px;
+    text-align: left;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-left: 14px; 
+    width: 45%;
+}
+
+div.loginAccounts > svg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-self:  center;
+    /* margin-right: 7px; */
+    max-width: 20px;
+    max-height: 20px;
+
 }
 
 
