@@ -268,7 +268,7 @@ form.inputsContainer > ul.notRegisterYetUl {
 
 div.lineSeparatorContainer > hr.lineSeparatorLeft {
     /* color: var(--white); */
-    border-top: 1px solid var(--white);
+    border-top: 1px solid rgb(255, 255, 255,0.4);
     width: 147.4px;
     /* left: 20px;  */
     top: 612.37109375px;
@@ -278,7 +278,7 @@ div.lineSeparatorContainer > hr.lineSeparatorLeft {
 
 div.lineSeparatorContainer > hr.lineSeparatorRight {
     /* color: var(--white); */
-    border-top: 1px solid rgb(255, 255, 255,1);
+    border-top: 1px solid rgb(255, 255, 255,0.4);
     width: 147.4px;
     /* left: 928px; */
     top: 612.37109375px;
@@ -288,7 +288,7 @@ div.lineSeparatorContainer > hr.lineSeparatorRight {
 }
 
 div.lineSeparatorContainer > p {
-    color: var(--white);
+    color:  rgb(255, 255, 255, 0.4);
     font-family: 'Open Sans';
     font-size: 14px;
     font-weight: 400;
