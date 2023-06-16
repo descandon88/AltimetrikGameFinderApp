@@ -1,5 +1,5 @@
 
-/******** COLOR GLOBAL VARIABLES **********/
+/************ COLOR GLOBAL VARIABLES *************/
 :root {
     --Light_Violet: rgba(191,95,255,1);
     --white: rgba(255, 255, 255, 1);
@@ -10,16 +10,32 @@
   /*INSERT BACKGROUND IMAGE INTO THE BODY  */
 body {
     background-image: url("../img/img_background/BG@3x.png");
-    background-size: cover;
       /* Full height */
     height: 100vh;
 
   /* Center and scale the image nicely */
+  background-size: cover;
+
     background-position: center;
     background-repeat: no-repeat;
     /* background-size: cover; */
 
 }
+
+.dark-mode {
+    background-image: url("../img/img_background/foto3.jpg");
+    /* background-size: cover; */
+      /* Full height */
+    /* height: 100vh; */
+    background-color: black;
+  /* Center and scale the image nicely */
+    /* background-position: center;
+    background-repeat: no-repeat; */
+    /* background-size: cover; */
+
+}
+
+
 /****************** LOGO STYLES *****************/
 .logoContainer {
     display: flex;
@@ -80,10 +96,13 @@ section.titleSection > p.welcomeP {
     /* left: 64.44%; */
     /* right: 10.42%; */
     /* top: calc(50% - 27px/2 - 280.5px); */
-    font-family: 'Archivo';
+    /* font-family: 'Archivo'; */
+
+    font-family: 'Archivo', sans-serif;
     font-style: normal;
     font-weight: 700;
-    font-size: 20px;
+    /* font-size: 20px; */
+    font-size: 15pt;
     line-height: 27px;
     /* identical to box height */
     text-align: center;
@@ -104,10 +123,14 @@ section.titleSection > p.logP {
     /* left: 928px;
     top: 253px; */
 
-    font-family: 'Exo';
+    /* font-family: 'Exo'; */
+    font-family: 'Archivo', sans-serif;
+
     font-style: normal;
     font-weight: 400;
-    font-size: 16px;
+    /* font-size: 16px; */
+    font-size: 12pt;
+
     line-height: 21.26px;
     display: flex;
     flex-direction: column;
@@ -138,7 +161,9 @@ section.titleSection > p.logP {
     font-family: 'Archivo';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 10.5pt;
+
     line-height: 130%;
 
     /* font-style: normal; */
@@ -196,7 +221,9 @@ section.titleSection > p.logP {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 10.5pt;
+
     line-height: 19px;
 }
 
@@ -208,7 +235,9 @@ section.titleSection > p.logP {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 10.5pt;
+
     line-height: 19px;
 }
 
@@ -235,7 +264,9 @@ form.inputsContainer > ul.notRegisterYetUl {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 10.5pt;
+
     line-height: 19px;
     color: #FFFFFF;
     padding: 0.2em;
@@ -245,7 +276,9 @@ form.inputsContainer > ul.notRegisterYetUl {
     font-family: 'Open Sans';
     font-style: normal;
     font-weight: 400;
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 10.5pt;
+
     line-height: 19px;
     color: var(--Light_Violet);
     padding: 0.2em;
@@ -290,12 +323,14 @@ div.lineSeparatorContainer > hr.lineSeparatorRight {
 div.lineSeparatorContainer > p {
     color:  rgb(255, 255, 255, 0.4);
     font-family: 'Open Sans';
-    font-size: 14px;
+    /* font-size: 14px; */
+    font-size: 10.5pt;
+
     font-weight: 400;
     text-align: center;
 }
 
-/* *****************LOGIN ACCOUNTS******************/
+/* ***************** LOGIN OPTIONS ACCOUNTS ******************/
 /* *********************************************** */
 .loginOptionContainer {
     display: flex;
@@ -324,7 +359,9 @@ div.loginAccounts > p {
     font-family: 'Archivo';
     font-style: normal;
     font-weight: 700;
-    font-size: 18px;
+    /* font-size: 18px; */
+    font-size: 13.5pt;
+
     line-height: 20px;
     text-align: left;
     display: flex;
