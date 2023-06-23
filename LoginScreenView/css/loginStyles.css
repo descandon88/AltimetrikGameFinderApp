@@ -12,7 +12,7 @@ body {
     background-image: url("../img/img_background/BG@3x.png");
       /* Full height */
     height: 100vh;
-
+    font-family: 'Archivo';
   /* Center and scale the image nicely */
   background-size: cover;
 

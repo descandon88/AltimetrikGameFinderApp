@@ -1,5 +1,7 @@
 
 const url = 'https://rawg-video-games-database.p.rapidapi.com/games?key=18890cd37d674530a577c605c7d378ff';
+let searchbar = document.getElementById("searchbar");
+let dataStore = [];
 
 const options = {
 	method: 'GET',
@@ -9,14 +11,18 @@ const options = {
 	}
 };
 
+
+
 async function fetchApiGames () { 
     try {
         const response  = await fetch(url, options);
-        const gameObject = await response.json();
+       // const response  = await fetch(data);
+        const gameObject = await response.json()
     
         console.log(gameObject.results);
         // const gameList = gameObject.results;
-
+        // dataStore = gameObject.gameObject;
+        // sectionGallery.innerHTML = getHTML(gameObject.gameObject);
         
         return gameObject
     } catch(error)  { 
@@ -25,83 +31,74 @@ async function fetchApiGames () {
 
 
 }
+let cardHTML = '' ;
 
 async function gameListFetchedData() {
     try {
       const listObj = await fetchApiGames();
       let  gameList = Object.values(listObj.results);
       console.log(gameList); 
-      let containerCards = document.querySelector('.sectionGallery');
-   
-    //   let divMiddleCard = document.querySelector('div');
-      gameList.forEach((obj) =>{
-        const elementName=document.createElement('p');
-        const elementReleased=document.createElement('p');
-       
-        elementName.style.color = "white";
-        elementReleased.style.color = "white";
+    
+    gameList.map((element, index) => {
+      let key = index +1;
+ 
+      namesGenres = element.genres.map((objInner)=>{console.log(objInner.name);return objInner.name})
+       cardHTML += '<div class="gameCard"> \
+      <div class="product-header"> \
+        <img src="'+element.background_image+'"/> \
+      </div> \
+      <div class="product-title"> \
+        <h4 class="gameName">'+element.name+'</h4> \
+        <h4 class="gameNumber">'+'#'+key+'</h4> \
+      </div> \
+      <div class="productContent"> \
+        <div class="productContentCol-1"> \
+        <div class="productLabels"> \
+        <p class="dateLabel"> '+'Release date:'+'</p> \
+        <p class="genresLabel"> '+'Genres:' +'</p> \
+      </div> \
+      <div class="productFeatures"> \
+       <p class="dateReleased"> '+element.released+'</p> \
+        <p class="genresList"> '+namesGenres+'</p> \
+       </div> \
+       </div> \
+       <div class="productContentCol-2"> \
+       </div> \
+      </div> \
+    </div> \
+    ';
+
+    // console.log(element.name);
+    // console.log(element.released);
+ });
+      
+  document.getElementsByClassName('sectionGallery')[0].innerHTML = cardHTML;
 
 
-        const gameCard= document.createElement('div.gameCard');
-        const middleSectionCard = document.createElement('div.middleSectionCard');
-
-
-
-        elementName.textContent = `${obj.name}`; 
-        elementReleased.textContent = `${obj.released}`; 
-        middleSectionCard.append(elementName,elementReleased);
-        // middleSectionCard.appendChild(elementReleased);
-
-        gameCard.appendChild(middleSectionCard);
-
-        containerCards.appendChild(gameCard);
-        console.log(obj.name);
-        console.log(obj.released);
-
-      })
-    // Utiliza los datos retornados desde la función fetchData
-      return gameList
+    return gameList
     } catch (error) {
       console.log(error);
     }
   }
 
   gameListFetchedData();
-// fetchApiGames();
-// const gameList2 = abc.results;
 
-// console.log('Será esta lista',gameList2)
+  searchbar.addEventListener('Input', function(e){
+    const currentword = e.target.value;
+    return currentword
+    // const filteredData= dataStore.filter(o => o.slug.includes(currentword));
+    // sectionGallery.innerHTML = filteredData.length ? getHTML(filteredData) : noResultHTML();
+});
 
 
 
 
-
-// fetch(url, options)
-// .then(res=>{console.log(res.json());
-// const objDucky =  res.json()})
-// .then(objDucky=>{
-
-// console.log(objDucky)
-// })
-// .catch(err => console.error(err));
 
 const cardsSection = document.querySelector('.sectionGallery');
 
 
-const loopGame=(games) => {
-    Object.entries(games).foreach(([id,slug]) => {
-    //   const div = document.createElement('div');
-    //   const image = document.createElement('img');
-    //   const name = document.createElement('h3');
-    //   const species = document.createElement('h3');
-    //   const like = document.createElement('button');
-    console.log(id);
-    console.log(slug);
 
-}) 
-};
 
-// loopGame(fetchApiGames());
 
 
  
