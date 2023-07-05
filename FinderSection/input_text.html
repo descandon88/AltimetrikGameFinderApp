@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>LocalStorage Example</h1>
+    <input type="text" id="myInput" list="myDataList">
+    <datalist id="myDataList"></datalist>
+    <button onclick="saveText()">Guardar</button>
+    <!-- <button onclick="showStoredText()">Mostrar Texto</button> -->
+    <script>
+
+// Función para guardar el texto en el localStorage al presionar Enter
+function saveText(event) {
+  if (event.key === "Enter") {
+    var inputValue = document.getElementById("myInput").value;
+
+    if (inputValue.trim() !== "") {
+      // Verificar si el valor ya existe en el localStorage antes de guardarlo
+      var storedValues = localStorage.getItem("myValues");
+      var values = storedValues ? JSON.parse(storedValues) : [];
+
+      if (!values.includes(inputValue)) {
+        values.push(inputValue);
+        localStorage.setItem("myValues", JSON.stringify(values));
+        updateDataList();
+      }
+
+      alert("Texto guardado en el localStorage.");
+    } else {
+      alert("Por favor, ingresa un texto válido.");
+    }
+  }
+}
+
+// Función para actualizar la lista desplegable (datalist) con los valores almacenados en el localStorage
+function updateDataList() {
+  var dataList = document.getElementById("myDataList");
+  dataList.innerHTML = "";
+
+  var storedValues = localStorage.getItem("myValues");
+  if (storedValues) {
+    var values = JSON.parse(storedValues);
+    for (var i = 0; i < values.length; i++) {
+      var option = document.createElement("option");
+      option.value = values[i];
+      dataList.appendChild(option);
+    }
+  }
+}
+
+// Evento input para actualizar la lista desplegable al hacer clic en el campo de entrada
+document.getElementById("myInput").addEventListener("click", function() {
+  updateDataList();
+});
+
+// Evento keypress para guardar el texto en el localStorage al presionar Enter
+document.getElementById("myInput").addEventListener("keypress", saveText);
+    </script>
+</body>
+</html>

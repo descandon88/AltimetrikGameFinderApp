@@ -16,6 +16,7 @@ header {
     background-color: var(--dark-gray);
     width: 100%;
     height: 79px;
+    margin-top: 0;
     justify-content: space-between;
     align-items: center;
 }
@@ -75,6 +76,7 @@ div.textTitle > p {color: var(--light-gray);}
     justify-content: space-between;
     align-items: center;
     width: 100%;
+    height: 30vh;
 
 }
 .textTitle >h1 {
@@ -98,47 +100,108 @@ div.textTitle > p {color: var(--light-gray);}
     display: flex;
     flex-direction: column;
     width: 10%;
-    margin-right: 4vw;
+    margin-right: 3.4vw;
+    row-gap: 5px;
+
 }
 
 .modeSwitch {
-    position: relative;
-    display: inline-block;
-    width: 60px;
+    /* position: relative;
+    display: inline-block; */
+    display: flex;
+    flex-direction:row-reverse;
+    width: 100%;
     height: 34px;
+    align-items: center;
+    column-gap: 5%;
   }
 /**** Dark/Ligh Slider******/
-.slider .round {
-    border-radius: 34px;
-  }
-  
-  .slider.round:before {
-    border-radius: 50%;
-  }
+.dk-modeLabel {
+  color: white;
+}
+.switch {
+  position: relative;
+  display: inline-block;
+  width: 44px;
+  height: 22px;
+}
 
-  input:checked + .slider {
-    background-color: #2196F3;
-  }
-  
-  input:focus + .slider {
-    box-shadow: 0 0 1px #2196F3;
-  }
-  
-  input:checked + .slider:before {
-    -webkit-transform: translateX(26px);
-    -ms-transform: translateX(26px);
-    transform: translateX(26px);
-  }
+.switch input { 
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
 
- /** View Buttons Styles**/ 
+.slider  {
+  position: absolute;
+  cursor: pointer;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background-color: rgb(95, 129, 251);
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:before {
+  position: absolute;
+  content: "";
+  height: 18px;
+  width: 18px;
+  left: auto;
+  bottom: 2px;
+  right: 2px;
+  background-color: white;
+  -webkit-transition: .4s;
+  transition: .4s;
+}
+
+.slider:after {
+  position: absolute;
+  content: "ON";
+  top: 50%;
+  left: 30%;
+  transform: translate(-50%, -50%);
+  font-family: Arial, sans-serif;
+  color:white;
+  font-size: 8px;
+}
+
+input:checked + .slider  {
+  background-color: #2196F3;
+}
+
+input:focus + .slider  {
+  box-shadow: 0 0 1px #2196F3;
+}
+
+input:checked + .slider:before {
+  -webkit-transform: translateX(18px);
+  -ms-transform: translateX(18px);
+  transform: translateX(-18px);
+}
+
+/* Rounded sliders */
+.slider.round {
+  border-radius: 34px;
+}
+
+.slider.round:before {
+  border-radius: 50%;
+}
+
+
+ /******* VIEW BUTTONS  STYLES ********/ 
 
 .viewButtonsContainer {
     display: flex;
     flex-direction: row;
-    justify-content: space-evenly;
+    justify-content: flex-end;
+    column-gap: 10%;
 
 }
-.thumbnailsActive, .disabledButton {
+.multipleView, .singleView {
     height: 40px;
     width: 40px;
     border-radius: 10px;
@@ -149,6 +212,8 @@ div.textTitle > p {color: var(--light-gray);}
     
     
 }
+
+
 
 /*****************************/
 /******* ASIDE SECTION ******/
@@ -213,6 +278,9 @@ h4.textPopularGames { color:white; }
   column-gap: 1%;
   align-items: center;
 }
+  /* grid-template-columns: repeat(auto-fit, minmax(363px, 1fr)); 
+  gap: 24px; */
+
 .gameCard {
   width: 75%;
   height:314px;
@@ -310,4 +378,58 @@ h4.textPopularGames { color:white; }
   align-items: center;
   align-content: flex-end;
 
+}
+
+/*  VIEW BUTTONS */
+
+.multipleView .gameCard {
+  /* Estilos específicos para la vista de cuadrícula */
+  display: inline-block;
+  width: calc(33.33% - 10px);
+  margin-right: 10px;
+}
+
+.singleView .gameCard {
+  /* Estilos específicos para la vista individual */
+  width: 100%;
+}
+
+
+datalist {
+  /* position: absolute;
+  background-color: white;
+  border: 1px solid blue;
+  border-radius: 0 0 5px 5px;
+  border-top: none;
+  font-family: sans-serif;
+  width: 340px;
+  padding: 5px;
+  max-height: 10rem;
+  overflow-y: auto */
+  max-height: 20em;
+  border: 0 none;
+  overflow-x: hidden;
+  overflow-y: auto;
+  
+}
+.search-datalist {
+  width: auto;
+}
+
+input[type="text"] {
+
+  width: 340px; /* INPUT WIDTH */
+}
+
+option {
+  background-color: white;
+  padding: 4px;
+  color: blue;
+  margin-bottom: 1px;
+  font-size: 18px;
+  /* cursor: pointer; */
+}
+
+option:hover,  .active{
+  background-color: lightblue;
 }
