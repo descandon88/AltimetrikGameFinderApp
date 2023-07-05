@@ -205,20 +205,18 @@ searchbar.addEventListener('keyup',  (e) => {
 
 // VIEW BUTTONS
 
-const gridViewBtn = document.getElementById('multipleView');
-const singleViewBtn = document.getElementById('singleView');
+let cardContainer = document.querySelector('.sectionGallery');
+let singleViewButton = document.querySelector('.singleView');
+// let gridViewButton = document.querySelector('.multipleView');
 
-// gridViewBtn.addEventListener('click', function() {
-//   gallery.classList.remove('singleView');
-//   gallery.classList.add('multipleView');
-// });
 
-// singleViewBtn.addEventListener('click', function() {
-//   gallery.classList.remove('singleView');
-//   gallery.classList.add('multipleView');
-// });
- 
+singleViewButton.addEventListener('click', function() {
+  cardContainer.classList.add('singleColumn');
+});
 
+gridViewButton.addEventListener('click', function() {
+  cardContainer.classList.remove('singleColumn');
+});
 
 
 
