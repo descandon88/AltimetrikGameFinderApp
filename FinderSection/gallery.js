@@ -1,6 +1,7 @@
+import { bigViewGameCard, multipleViewGameCard } from "./cards_composition.js";
 const url = 'https://rawg-video-games-database.p.rapidapi.com/games?key=18890cd37d674530a577c605c7d378ff';
 let searchbar = document.getElementById("searchbarId");
-let cardHTML = '' ;
+// let cardHTML = '' ;
 let gameArray = [];
 
 const options = {
@@ -12,7 +13,7 @@ const options = {
 };
 
 // ASYNC FUNCTION TO CALL THE APIS FROM THE URL//
-async function getApiGames () { 
+const  getApiGames = async ()=> { 
     try {
         const response  = await fetch(url, options);
         const gameObject = await response.json();
@@ -30,7 +31,7 @@ async function getApiGames () {
 
 //***FILTER FUNCTION FOR GAME LIST ***///
 
-function filterGames(games, searchTerm) {
+const filterGames=(games, searchTerm)=> {
   // let gamesArray=[];
   // const lowSearchTerm = searchTerm.toLowerCase();
     const filtergames = games.filter(game =>{ 
@@ -60,7 +61,7 @@ function filterGames(games, searchTerm) {
 }
 
 // LIST IN SEARCH BAR
-function saveText(event) {
+const saveText=(event) =>{
   if (event.key === "Enter") {
     let inputValue = document.getElementById("searchbarId").value;
     // let inputValue = searchbar;
@@ -76,20 +77,17 @@ function saveText(event) {
         updateDataList();
       }
 
-      alert("Texto guardado en el localStorage.");
+      alert("Text saved in the localStorage.");
     } else {
-      alert("Por favor, ingresa un texto válido.");
+      alert("Please, insert valid text");
     }
   }
 }
 
 // Función para actualizar la lista desplegable (datalist) con los valores almacenados en el localStorage
-function updateDataList() {
+const updateDataList =()=> {
   let  dataList = document.getElementById("mySearchList");
-
   dataList.innerHTML = "";
-
-
   let storedValues = localStorage.getItem("myValues");
   if (storedValues) { 
    let values = JSON.parse(storedValues);
@@ -126,116 +124,14 @@ document.getElementById("searchbarId").addEventListener("keypress", updateDataLi
 
 
 
-function gameListCards(games) {
-  console.log(games);
-  cardHTML = '';
-    cardHTML = games.map((element, index) => {
-      let key = index +1;
-      let namesGenres = element.genres.map((objInner)=>{return objInner.name});
-
-      cardHTML += '<div class="gameCard"> \
-      <div class="product-header"> \
-        <img src="'+element.background_image+'"/> \
-      </div> \
-      <div class="product-title"> \
-        <h4 class="gameName">'+element.name+'</h4> \
-        <h4 class="gameNumber">'+'#'+key+'</h4> \
-      </div> \
-      <div class="productContent"> \
-        <div class="productContentCol-1"> \
-        <div class="productLabels"> \
-        <p class="dateLabel"> '+'Release date:'+'</p> \
-        <p class="genresLabel"> '+'Genres:' +'</p> \
-      </div> \
-      <div class="productFeatures"> \
-       <p class="dateReleased"> '+element.released+'</p> \
-        <p class="genresList"> '+namesGenres+'</p> \
-       </div> \
-       </div> \
-       <div class="productContentCol-2"> \
-       </div> \
-      </div> \
-    </div> \
-    ';
-
-    
-    document.getElementsByClassName('sectionGallery')[0].innerHTML = cardHTML;
-
-  });
-
-}
-
-
-// function showList(searchTerm){
-  async function showList(searchTerm){
-
-  // getApiGames()
-  // .then(gameArray =>
-  //     filterGames(gameArray, searchTerm) 
-        
-
-  //   )
-  // .then(games => { 
-  //   gameListCards(games);
-  // })     
-  // .catch(error => {
-  //   console.error('Error al obtener los datos:', error);
-  // })
-  if (gameArray.length === 0) {
-    try {
-      gameArray = await getApiGames();
-      console.log("Game array fetched: ", gameArray.length);
-    } catch (error) {
-      console.error('Error fetching games:', error);
-    }
-  }
-
-  const filteredGames = filterGames(gameArray, searchTerm);
-  gameListCards(filteredGames);
-}
-
-showList();
-
-searchbar.addEventListener('keyup',  (e) => {
-  let searchTerm = e.target.value;
-  console.log("searchTerm: ",searchTerm);
-  showList(searchTerm);
-})
-
-
-// VIEW BUTTONS
-
-let cardContainer = document.querySelector('.sectionGallery');
-let singleViewButton = document.querySelector('.singleView');
-// let gridViewButton = document.querySelector('.multipleView');
-
-
-singleViewButton.addEventListener('click', function() {
-  cardContainer.classList.add('singleColumn');
-});
-
-gridViewButton.addEventListener('click', function() {
-  cardContainer.classList.remove('singleColumn');
-});
-
-
-
-// const cardsSection = document.querySelector('.sectionGallery');
-
-
-// async function gameListCards() {
-//   //function gameListCards() {
-//     try {
-//       const listObj = await getApiGames();
-//       //const listObj = data;
-//       let  gameList = Object.values(listObj.results);
-//       console.log(gameList); 
-    
-//     gameList.map((element, index) => {
+// const multipleViewGameCard = (games) => {
+//   console.log(games);
+//   cardHTML = '';
+//     cardHTML = games.map((element, index) => {
 //       let key = index +1;
- 
-//       namesGenres = element.genres.map((objInner)=>{console.log(objInner.name);return objInner.name})
-//        cardHTML += '<div class="gameCard"> \
+//       let namesGenres = element.genres.map((objInner)=>{return objInner.name});
+
+//       cardHTML += '<div class="gameCard"> \
 //       <div class="product-header"> \
 //         <img src="'+element.background_image+'"/> \
 //       </div> \
@@ -258,15 +154,103 @@ gridViewButton.addEventListener('click', function() {
 //        </div> \
 //       </div> \
 //     </div> \
-//     ';
-
-//     // console.log(element.name);
-//     // console.log(element.released);
+//     ';    
 //     document.getElementsByClassName('sectionGallery')[0].innerHTML = cardHTML;
 
-//  });
-//     // return gameList
-//   } catch (error) {
-//     console.log(error);
-//   }
+//   });
+
 // }
+
+//  const bigViewGameCard = (games) => {
+//   console.log("hola que hace");
+//   cardHTML = '';
+//     cardHTML = games.map((element, index) => {
+//       let key = index +1;
+//       let namesGenres = element.genres.map((objInner)=>{return objInner.name});
+
+//       cardHTML += '<div class="gameCard"> \
+//       <div class="product-header"> \
+//         <img src="'+element.background_image+'"/> \
+//       </div> \
+//       <div class="product-title-bigCards"> \
+//         <h2 class="gameName">'+element.name+'</h2> \
+//         <h2 class="gameNumber">'+'#'+key+'</h2> \
+//       </div> \
+//       <div class="productContent-bigCards"> \
+//         <div class="productContentRow1-bigCards"> \
+//           <div class="col1-bigCards-dates"> \
+//             <p class="dateLabel-bigCards"> '+'Release date:'+'</p> \
+//             <p class="dateReleased-bigCards"> '+element.released+'</p> \
+//           </div> \
+//         <div class="col2-bigCards-genres"> \
+//           <p class="genresLabel-bigCards"> '+'Genres:' +'</p> \
+//           <p class="genresList-bigCards"> '+namesGenres+'</p> \
+//         </div> \
+//         <div class="col3-bigCards-consoles"> \
+//         </div> \
+//        </div> \
+//        <div class="productContentRow2-bigCards"> \
+//        <p class="description-bigCards"> '+element.released+'</p> \
+//        </div> \
+//       </div> \
+//     </div> \
+//     ';    
+//     document.getElementsByClassName('sectionGallery')[0].innerHTML = cardHTML;
+
+//   });
+
+// }
+
+// function showList(searchTerm){
+const showList = async(searchTerm)=>{
+if (gameArray.length === 0) {
+    try {
+      gameArray = await getApiGames();
+      console.log("Game array fetched: ", gameArray.length);
+    } catch (error) {
+      console.error('Error fetching games:', error);
+    }
+  }
+  const filteredGames = filterGames(gameArray, searchTerm);
+  multipleViewGameCard(filteredGames);
+}
+
+showList();
+
+const showBigViewCards = async(searchTerm)=>{
+  if (gameArray.length === 0) {
+      try {
+        gameArray = await getApiGames();
+        console.log("Game array fetched: ", gameArray.length);
+      } catch (error) {
+        console.error('Error fetching games:', error);
+      }
+    }
+    const filteredGames = filterGames(gameArray, searchTerm);
+    bigViewGameCard(filteredGames);
+  }
+
+searchbar.addEventListener('keyup',  (e) => {
+  let searchTerm = e.target.value;
+  console.log("searchTerm: ",searchTerm);
+  showList(searchTerm);
+})
+
+
+// VIEW BUTTONS
+
+let cardContainer = document.querySelector('.sectionGallery');
+let singleViewButton = document.querySelector('.singleView');
+let gridViewButton = document.querySelector('.multipleView');
+
+
+singleViewButton.addEventListener('click',()=> {
+  cardContainer.classList.add('singleColumn');
+  showBigViewCards();
+});
+
+gridViewButton.addEventListener('click', ()=>{
+  cardContainer.classList.remove('singleColumn');  
+  showList();
+});
+

@@ -225,6 +225,8 @@ input:checked + .slider:before {
   margin-right: 3vw;
 
 }
+
+
 .newReleasesUl {
   display: flex;
   flex-direction: column;
@@ -245,7 +247,10 @@ flex-direction: column;
 column-gap: 21px;
 }
 
+/****  COLORS AND SIZE FONT- ASIDE SECTION ****/
 
+div.upperAside > h3 { font-family: 'Archivo'; color:white;}
+#home-title {color: rgb(191, 95, 225);}
 
 .textNewReleases {color:white;}
 
@@ -402,8 +407,40 @@ h4.textPopularGames { color:white; }
 
 .singleColumn .gameCard {
   /* Ajusta el tamaño de la tarjeta según tus necesidades */
-  width: 100%;
-  height: 400px;
+  width: 697px;
+  height: 538px;
+}
+
+/*BIG CARD VIEW CARD*/
+.product-title-bigCards {
+  display:flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0% 3% 0% 3%;
+  height: 12%;
+}
+
+.productContent-bigCards {
+  height: 25%;
+  display: flex;
+  flex-direction: column;
+  padding: 0% 3% 0% 3%;
+
+}
+.productContentRow1-bigCards {
+  display: flex;
+  flex-direction: row;
+}
+
+ .col1-bigCards-dates, .col2-bigCards-genres {
+  display: flex;
+  flex-direction: row;
+  color:white;
+}
+
+.col1-bigCards-dates { 
+  display:flex;
 }
 
 /*DATALIST FOR SEARCHES LIST*/
