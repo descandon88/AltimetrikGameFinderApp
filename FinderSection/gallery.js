@@ -1,5 +1,14 @@
-import { bigViewGameCard, multipleViewGameCard } from "./cards_composition.js";
-const url = 'https://rawg-video-games-database.p.rapidapi.com/games?key=18890cd37d674530a577c605c7d378ff';
+import { bigViewGameCard, multipleViewGameCard } from "./cards_design.js";
+import {filterGames, saveText} from "./searchBar.js";
+import { modalDesign  } from "./modal.js";
+import { getInitials } from "../LoginScreenView/js/login.js";
+const userEmail = localStorage.getItem("userEmail");
+
+// import {getAllGameDataV} from "./request.js";
+const apiKey = '18890cd37d674530a577c605c7d378ff';
+
+const url = `https://rawg-video-games-database.p.rapidapi.com/games?key=${apiKey}&platforms=18,1,7`;
+
 let searchbar = document.getElementById("searchbarId");
 // let cardHTML = '' ;
 let gameArray = [];
@@ -11,13 +20,20 @@ const options = {
 		'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com'
 	}
 };
+if( userEmail) {console.log('Email ingresado:', userEmail);
+}
+
+// Llama a la función getInitials utilizando el email guardado
+const initials = getInitials(userEmail);
+console.log('Iniciales del email:', initials);
+document.getElementById('userInitials').textContent  = initials;
+
 
 // ASYNC FUNCTION TO CALL THE APIS FROM THE URL//
 const  getApiGames = async ()=> { 
     try {
         const response  = await fetch(url, options);
         const gameObject = await response.json();
-        // let games = Object.values(gameObject.results);
         gameArray = Object.values(gameObject.results);
 
         return gameArray;
@@ -29,60 +45,32 @@ const  getApiGames = async ()=> {
 }
 
 
-//***FILTER FUNCTION FOR GAME LIST ***///
+const getGameDescription = async (games, apiKey) => {
+  const gamePromises = games.map(async (game, index) => {
+    const gameId = game.id;
+    const url = `https://rawg-video-games-database.p.rapidapi.com/games/${gameId}?key=${apiKey}`;
 
-const filterGames=(games, searchTerm)=> {
-  // let gamesArray=[];
-  // const lowSearchTerm = searchTerm.toLowerCase();
-    const filtergames = games.filter(game =>{ 
-      if ( 
-        game.name.toLowerCase().includes(searchTerm)
-
-      ) return true;
-    
-      else {
-    
-        return false;
-      }
+    try {
+      const response = await fetch(url, options);
+      const gameResult = await response.json();
+      return { index, result: gameResult };
+    } catch (error) {
+      console.error(error);
+      return { index, result: null };
     }
-    )
-    console.log("Filter games: ", filtergames.length);
-    console.log(" games: ", games);
+  });
 
-    if (searchTerm !="" && filtergames.length >0 ) 
-    {  
-      return filtergames 
-    }
-    else
-    { 
-
-      return games
-    }
-}
-
-// LIST IN SEARCH BAR
-const saveText=(event) =>{
-  if (event.key === "Enter") {
-    let inputValue = document.getElementById("searchbarId").value;
-    // let inputValue = searchbar;
-
-    if (inputValue.trim() !== "") {
-      // Verificar si el valor ya existe en el localStorage antes de guardarlo
-      let storedValues = localStorage.getItem("myValues");
-      let values = storedValues ? JSON.parse(storedValues) : [];
-
-      if (!values.includes(inputValue)) {
-        values.push(inputValue);
-        localStorage.setItem("myValues", JSON.stringify(values));
-        updateDataList();
-      }
-
-      alert("Text saved in the localStorage.");
-    } else {
-      alert("Please, insert valid text");
-    }
+  try {
+    const gameDetail = await Promise.all(gamePromises);
+    const orderedResults = gameDetail.sort((a, b) => a.index - b.index);
+    const finalResults = orderedResults.map(result => result.result);
+    console.log("Order2: ", finalResults);
+    return finalResults;
+  } catch (error) {
+    console.log(error);
+    return [];
   }
-}
+};
 
 // Función para actualizar la lista desplegable (datalist) con los valores almacenados en el localStorage
 const updateDataList =()=> {
@@ -95,14 +83,11 @@ const updateDataList =()=> {
       let option = document.createElement("option");
       option.value = value;
       dataList.appendChild(option);
-
-
-
     });
 
   }
 }
-window.addEventListener('load', function() {
+window.addEventListener('load', ()=> {
   // Obtener el ancho del input
   let input = document.getElementById('searchbarId');
   let inputWidth = window.getComputedStyle(input).width;
@@ -120,137 +105,236 @@ document.getElementById("searchbarId").addEventListener("keypress", updateDataLi
 // CODE HERE TO CLEAR THE LOCAL STORGAE WHEN CHANGE THE LOGIN USER
 // localStorage.clear();
 
-//
 
-
-
-// const multipleViewGameCard = (games) => {
-//   console.log(games);
-//   cardHTML = '';
-//     cardHTML = games.map((element, index) => {
-//       let key = index +1;
-//       let namesGenres = element.genres.map((objInner)=>{return objInner.name});
-
-//       cardHTML += '<div class="gameCard"> \
-//       <div class="product-header"> \
-//         <img src="'+element.background_image+'"/> \
-//       </div> \
-//       <div class="product-title"> \
-//         <h4 class="gameName">'+element.name+'</h4> \
-//         <h4 class="gameNumber">'+'#'+key+'</h4> \
-//       </div> \
-//       <div class="productContent"> \
-//         <div class="productContentCol-1"> \
-//         <div class="productLabels"> \
-//         <p class="dateLabel"> '+'Release date:'+'</p> \
-//         <p class="genresLabel"> '+'Genres:' +'</p> \
-//       </div> \
-//       <div class="productFeatures"> \
-//        <p class="dateReleased"> '+element.released+'</p> \
-//         <p class="genresList"> '+namesGenres+'</p> \
-//        </div> \
-//        </div> \
-//        <div class="productContentCol-2"> \
-//        </div> \
-//       </div> \
-//     </div> \
-//     ';    
-//     document.getElementsByClassName('sectionGallery')[0].innerHTML = cardHTML;
-
-//   });
-
-// }
-
-//  const bigViewGameCard = (games) => {
-//   console.log("hola que hace");
-//   cardHTML = '';
-//     cardHTML = games.map((element, index) => {
-//       let key = index +1;
-//       let namesGenres = element.genres.map((objInner)=>{return objInner.name});
-
-//       cardHTML += '<div class="gameCard"> \
-//       <div class="product-header"> \
-//         <img src="'+element.background_image+'"/> \
-//       </div> \
-//       <div class="product-title-bigCards"> \
-//         <h2 class="gameName">'+element.name+'</h2> \
-//         <h2 class="gameNumber">'+'#'+key+'</h2> \
-//       </div> \
-//       <div class="productContent-bigCards"> \
-//         <div class="productContentRow1-bigCards"> \
-//           <div class="col1-bigCards-dates"> \
-//             <p class="dateLabel-bigCards"> '+'Release date:'+'</p> \
-//             <p class="dateReleased-bigCards"> '+element.released+'</p> \
-//           </div> \
-//         <div class="col2-bigCards-genres"> \
-//           <p class="genresLabel-bigCards"> '+'Genres:' +'</p> \
-//           <p class="genresList-bigCards"> '+namesGenres+'</p> \
-//         </div> \
-//         <div class="col3-bigCards-consoles"> \
-//         </div> \
-//        </div> \
-//        <div class="productContentRow2-bigCards"> \
-//        <p class="description-bigCards"> '+element.released+'</p> \
-//        </div> \
-//       </div> \
-//     </div> \
-//     ';    
-//     document.getElementsByClassName('sectionGallery')[0].innerHTML = cardHTML;
-
-//   });
-
-// }
 
 // function showList(searchTerm){
+let gameObj = [];
+let gameArray2 = [];
+
+
+
 const showList = async(searchTerm)=>{
 if (gameArray.length === 0) {
     try {
-      gameArray = await getApiGames();
-      console.log("Game array fetched: ", gameArray.length);
+      gameObj = await getApiGames();
+      // gameArray2=  await getGameDescription(gameArray, apiKey);
+
+      console.log("Game array del show List: ", gameObj.length);
     } catch (error) {
       console.error('Error fetching games:', error);
     }
   }
-  const filteredGames = filterGames(gameArray, searchTerm);
+  console.log("Game array del show List: ", gameObj.length);
+ 
+  let filteredGames = filterGames(gameObj, searchTerm);
   multipleViewGameCard(filteredGames);
+
 }
 
 showList();
 
-const showBigViewCards = async(searchTerm)=>{
-  if (gameArray.length === 0) {
+
+// const executeArrayDetailed = async ()=>{
+  const executeArrayDetailed =  ()=>{
+  // if (gameArray.length === 0) { 
+    // showList();
+
+    console.log("Se inicia el exceuteArrayDetailed");
+    // await delay(1600);
+    // gameArray2 =  await getGameDescription(gameArray, apiKey);
+
+    return new Promise ((resolve)=>{
+      setTimeout(async()=>{
+        gameArray2 =  await getGameDescription(gameArray, apiKey);
+      resolve(gameArray2);
+      console.log("qu[e hay aqui",gameArray2[1]);
+
+      console.log("Se termina  el exceuteArrayDetailed");
+
+    },1600);
+    });
+
+  };
+
+  executeArrayDetailed();
+
+const showBigViewCards = async (searchTerm)=>{
+  console.log("Cuánto hay aquí gameArray",gameArray);
+
+  if (gameArray2.length == 0 ) {
+    
       try {
-        gameArray = await getApiGames();
-        console.log("Game array fetched: ", gameArray.length);
+        gameArray2 =  await getGameDescription(gameArray, apiKey);
+        console.log("Game array2 fetched: ", gameArray2.length);
       } catch (error) {
         console.error('Error fetching games:', error);
       }
-    }
-    const filteredGames = filterGames(gameArray, searchTerm);
-    bigViewGameCard(filteredGames);
-  }
 
-searchbar.addEventListener('keyup',  (e) => {
-  let searchTerm = e.target.value;
-  console.log("searchTerm: ",searchTerm);
-  showList(searchTerm);
-})
+    }
+  let filteredGames = filterGames(gameArray2, searchTerm);
+  bigViewGameCard(filteredGames);
+    
+}
+
+
+let isTrue = false; 
+
+const setTrue = () => {
+  isTrue = true;
+  console.log('isTrue:',isTrue);
+
+  console.log('Estado cambiado a true', isTrue);
+  searchbar.addEventListener('keyup',  (e) => {
+    let searchTerm = e.target.value;
+    console.log("searchTerm: ",searchTerm);
+    showBigViewCards(searchTerm);
+  })
+};
+
+const setFalse = () => {
+  isTrue = false;
+  console.log('Estado cambiado a false',isTrue);
+  searchbar.addEventListener('keyup',  (e) => {
+    let searchTerm = e.target.value;
+    console.log("searchTerm: ",searchTerm);
+    showList(searchTerm);
+});
+}
+
+if (isTrue == false) { 
+  // showList()
+  // showBigViewCards();
+
+  console.log('isTrue:',isTrue);
+  searchbar.addEventListener('keyup',  (e) => {
+    let searchTerm = e.target.value;
+    console.log("searchTerm: ",searchTerm);
+    showList(searchTerm);
+  })
+// }
+// else {
+//   // searchTerm = e.target.value;
+//   console.log('isTrue:', isTrue);
+
+//   showBigViewCards(searchTerm);
+//   searchbar.addEventListener('keyup',  () => {
+//     // searchTerm = e.target.value;
+
+//     console.log("searchTerm: ",searchTerm);
+//     showBigViewCards(searchTerm);
+//   })
+}
 
 
 // VIEW BUTTONS
 
 let cardContainer = document.querySelector('.sectionGallery');
+const sectionGallery = document.getElementById('sectionGallery');
+
 let singleViewButton = document.querySelector('.singleView');
 let gridViewButton = document.querySelector('.multipleView');
 
+const modal = document.querySelector('.modal');
+const modalContent = document.getElementById('modal-Content');
+let  closeBtn = '';
+// if (modalHTML){ 
+//  let closeBtn = document.querySelector('.close');
+//  closeBtn.addEventListener('click', ()=> {
+//   console.log("se hace click en el closeBtn o no? ");
+//   modal.style.display = 'none';
+// });
+// }
+// let  btnCard;
+
+// setTimeout(()=>{ 
+const modalClick = (modalDesignFn)=> {  
+  console.log("funciona el click");
+ const btnCard = document.querySelectorAll(".gameCard");
+  // console.log("gameCard btnCard",  btnCard);
+  // console.log("gameArray2:",gameArray2);
+  btnCard.forEach((card) => {
+    const container = card;
+    // console.log("card",card);
+    let gameName ='';
+    container.addEventListener('click', (event)=> {
+      const targetcard = event.target;
+   
+
+      console.log("click", targetcard);
+      gameName = card.querySelector('.gameName').textContent;
+
+      console.log("gameName", gameName);
+      // const selectedGame = gameArray2.find((game) => game.nombre === gameName);
+
+
+
+   if (targetcard.matches('img')||targetcard.matches('h4')||targetcard.matches('div')||targetcard.matches('p')||targetcard.matches('h2')) {
+    // if (selectedGame) {
+      console.log("click matches");
+      modal.style.display = 'block';
+      let modalHTML = '';
+
+      modalDesignFn(gameName,gameArray2,modal,modalHTML); 
+      }
+      else {
+        console.log("no entra el matches");
+        // modal.style.display = 'block';
+
+      }
+    });
+    
+  });
+} 
+// modalClick();
+// },1700);
+setTimeout(()=>{ 
+  modalClick(modalDesign);
+},3000);
+
+// setTimeout(()=>{ 
+//   btnCard.forEach((card) => {
+//     card.addEventListener('click', (event)=> {
+//       const targetcard = event.target;
+//       console.log("click");
+
+//       if (targetcard.matches('.gameCard')) {
+  
+//         modal.style.display = 'block';
+//       }
+//     });
+//   });
+// },1700);
+//Cerrar el modal al hacer clic en el botón de cerrar
+
+
+// function showModal(item) {
+//   modalBody.textContent = item.description;
+//   modal.style.display = 'block';
+// }
+
 
 singleViewButton.addEventListener('click',()=> {
+
   cardContainer.classList.add('singleColumn');
-  showBigViewCards();
+  showBigViewCards(searchbar.value);
+    modalClick();
+
+  isTrue = true; 
+  setTrue()
 });
 
-gridViewButton.addEventListener('click', ()=>{
+gridViewButton.addEventListener('click',()=>{
+  // setFalse
+
   cardContainer.classList.remove('singleColumn');  
-  showList();
+  showList(searchbar.value)
+  modalClick();
+ 
+
+  // showList();
+  setFalse();
+  // isTrue = false; 
+
 });
+
 

@@ -48,13 +48,13 @@
         </section>
       
         <form class="inputsContainer">
-            <input class="emailInput" type="text"  placeholder="Email"/>
-            <input class="passwordInput" type="password" placeholder="Password"/>
+            <input style="color:black;"  id="email_id" class="emailInput" type="text"  placeholder="Email"/>
+            <input class="passwordInput" id="password_id" type="password" placeholder="Password"/>
             <ul class="rememberMeUl">
                 <li class="rememberMeli"> <input type="checkbox"  value="Remember me" >Remember me</li>
                 <li class="forgotPasswordli">Forgot password?</li>
             </ul>
-            <button class="logInButton">Log in</button>
+            <button class="logInButton" type="submit">Log in</button>
             <ul class="notRegisterYetUl">
                 <li class="notRegisterYetLi">Not registered yet?</li>
                 <li class="registerNowLi">Register now</li>
@@ -91,6 +91,10 @@
         <button onclick="changeMode()">Dark Mode </button>
 
     </footer>
+
+
+    <script type="module" src="./js/login.js"></script>
+
 
 
 

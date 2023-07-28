@@ -294,6 +294,12 @@ h4.textPopularGames { color:white; }
   align-self: center;
   justify-self: center;
 }
+
+.gameCard:hover,
+.gameCard:focus {
+  cursor: pointer;
+}
+
 .product-header {
   height:60%;
   width: 100%;
@@ -412,7 +418,7 @@ h4.textPopularGames { color:white; }
 }
 
 /*BIG CARD VIEW CARD*/
-.product-title-bigCards {
+.product-title.bigCards {
   display:flex;
   flex-direction: row;
   justify-content: space-between;
@@ -421,7 +427,7 @@ h4.textPopularGames { color:white; }
   height: 12%;
 }
 
-.productContent-bigCards {
+.productContent.bigCards {
   height: 25%;
   display: flex;
   flex-direction: column;
@@ -441,6 +447,16 @@ h4.textPopularGames { color:white; }
 
 .col1-bigCards-dates { 
   display:flex;
+}
+
+
+.productContentRow2-bigCards {
+  color:white;
+  display: -webkit-box;
+  -webkit-line-clamp: 4; /* Número de líneas a mostrar */
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
 }
 
 /*DATALIST FOR SEARCHES LIST*/
@@ -481,4 +497,183 @@ option {
 
 option:hover,  .active{
   background-color: lightblue;
+}
+
+
+
+
+.modal {
+  display: none; /* Ocultar el modal por defecto */
+  position: fixed;
+  /* z-index: 9999;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  overflow: auto;
+  background-color: rgba(0, 0, 0, 0.4); */
+  z-index: 1; /* Sit on top */
+  padding-top: 100px; /* Location of the box */
+  left: 0;
+  top:0;
+  width: 100%; 
+  height: 100%; 
+  overflow: auto; /* Enable scroll if needed */
+  background-color: rgb(0,0,0); /* Fallback color */
+  background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
+  /* transition-duration:2s; */
+}
+
+
+
+.gameCard-modal {
+  width: 100%;
+  height: 100%;
+}
+.gameCard-modal:target {
+  display: none;
+}
+.modal-header, .gameCard-modal{
+  width: 100%;
+  height: 60%;
+}
+
+/* div.modal-header > img {
+
+  width: 100%;
+  height: 100%;
+} */
+
+.user-icon {
+  width: 60px;
+  height: 60px;
+  background-color: #007bff;
+  color: #ffffff;
+  font-size: 24px;
+  text-align: center;
+  line-height: 60px;
+  border-radius: 50%;
+}
+
+/*MODAL STYLES*/
+
+.modal-content {
+  background-color: #fff;
+  margin: 10% auto;
+  padding: 0%;
+  border: 1px solid #888;
+  width: 1076px;
+  height: 793px;
+  border-radius: 15px;
+}
+
+.modal-header {
+  display: flex;
+  flex-direction: column;
+  height: 40%;
+}
+.close {
+  color: white;
+  float: right;
+  font-size: 28px;
+  font-weight: bold;
+  margin: 2% 2% 0 0;
+  /* width: 5%;
+  height: 5%; */
+}
+.close > p {
+  font-size: 58px;
+}
+
+.close:hover,
+.close:focus {
+  color: violet;
+  text-decoration: none;
+  cursor: pointer;
+}
+
+.modal-title {
+  width: 589px;
+  height: 33%;
+  
+}
+.modal-title > h1 {
+  font-family: 'Archivo' ;
+  font-weight: 800;
+  line-height: 52.22px;
+  font-size: 48px;
+  color:white;
+  margin:0%
+
+}
+.modal-tags{
+  display: flex;
+  flex-direction: row;
+  height: 33%;
+  gap:2%;
+}
+.modal-released {
+  display:flex;
+  align-items: center;
+  width: 124px;
+  height: 28px;
+  border-radius: 10px;
+  background-color: white;
+}
+.modal-top-tag{
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+  width: 124px;
+  height: 28px;
+  border-radius: 10px;
+  background-color: white;
+  color:violet;
+}
+.modal-main{
+  display: flex;
+  flex-direction: row;
+}
+.modal-main.description{
+  color:white;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  margin: 5%;
+  /* max-width: calc(10em*4);*/
+  overflow: hidden; 
+
+}
+
+.modal-main.col1, .modal-main.col2{
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+} 
+
+.modal-main.buttons{
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  gap: 5%;
+  margin: 5%
+
+}
+
+.modal-main.buttons > button {
+  width: 228px;
+  height: 47px; 
+  border: 2px bold;
+  border-color: violet;
+  border-radius: 5px;
+}
+.modal-main.buttons > .addWhishListBtn {
+  background-color: violet;
+  color: white;
+}
+
+.modal-main.buttons > .purchaseBtn {
+  background-color: transparent;
+  color: violet;
+  opacity: 0.7;
 }
