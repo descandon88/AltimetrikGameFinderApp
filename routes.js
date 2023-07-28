@@ -69,10 +69,8 @@ app.post('/users', (req, res) => {
 
 //   newUser.token = token;
 
-  // Add the new user to the users array
   users.push(newUser);
 
-  // Save the updated users array back to db.json with the token
   fs.writeFileSync(db_file, JSON.stringify({ users }), 'utf8');
 
   const token = jwt.sign({ id: newUser.id, email: newUser.email }, secretKey);
