@@ -29,6 +29,7 @@ main {
     display: flex;
     flex-direction: row;
     align-items: center;
+    margin-left:3%;
 }
 div.logoGameContainer > div.logoRight {
     display: flex;
@@ -58,7 +59,11 @@ div.searchBar > input {
   align-items: center;
   justify-content: space-evenly;
   column-gap: 1vw;
-
+  margin-right:3%;
+  font-family: 'Archivo', sans-serif;
+}
+.logOutLink {
+  color:white;
 }
 div.logAccount > svg {
 width: 48px;
@@ -114,6 +119,7 @@ div.textTitle > p {color: var(--light-gray);}
     height: 34px;
     align-items: center;
     column-gap: 5%;
+    font-family: 'Archivo', sans-serif;
   }
 /**** Dark/Ligh Slider******/
 .dk-modeLabel {
@@ -223,6 +229,7 @@ input:checked + .slider:before {
   
   margin-left: 3vw;
   margin-right: 3vw;
+  font-family: 'Archivo';
 
 }
 

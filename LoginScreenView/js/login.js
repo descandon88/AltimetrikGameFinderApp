@@ -1,24 +1,13 @@
-
-// function changeMode() {
-
-//     var element = document.body;
-//     element.classList.toggle("dark-mode");
-//     // alert("Hello there!");
-//     console.log("Haciendo click");
-
-//  }
-
 const doc=document.querySelector(".inputsContainer");
 let userEmail = '';
 // let initials = '';
 
 
 const userValidation = async(event) =>{
-    event.preventDefault(); // Evitar que el formulario se envíe automáticamente
+    event.preventDefault(); 
     const email = document.getElementById("email_id").value;
     const password = document.getElementById("password_id").value;
-    // const email = document.getElementById("email_id").value;
-    // const password = document.getElementById("password_id").value;
+
     try {
     const response = await fetch("http://localhost:3000/login", {
       method: "POST",
@@ -29,18 +18,23 @@ const userValidation = async(event) =>{
     });
 
     if (response.ok) {
-
+    const data = await response.json();
+    const userToken = data.token;
     let userEmail = email;
-    localStorage.setItem("userEmail", userEmail);
+    // localStorage.setItem("userEmail", userEmail);
+    localStorage.setItem('token',userToken);
 
-    console.log("Qué entrea al userEmail: ", userEmail);
-    // setTimeout(() => {
-    
     window.location.href = "../FinderSection/finder.html";
-    // }, 2000); 
 
-    } else {
-      alert("Error in login session.");
+    } 
+    else if (response.status === 401) {
+      alert('user or password are incorrect! ')
+    }
+    else if (response.status === 404) {
+      alert('Not found!')
+    }
+    else {
+      alert("Password or User are not correct. Please try again!");
     }
     return Promise.resolve({ userEmail: null });
     } catch (error) {
@@ -50,19 +44,18 @@ const userValidation = async(event) =>{
   }
 }
 
-// userValidation()
-// .then((result) => {
-//     const { userEmail } = result;
-//     console.log("Valor actualizado de userEmail:", userEmail);
-//     // Aquí puedes hacer lo que necesites con el valor actualizado de userEmail
-//   });
 
 
 doc?.addEventListener("submit", userValidation);
 
+export const logOutFunction = (tokenFromUserSension) => {
+    // console.log("Se hace click en log Out Function ? ", userToken)
+    localStorage.removeItem ("token", tokenFromUserSension);
+    window.location.href = "../LoginScreenView/login.html";
+}
 
 
- const getInitials = (name) => {
+export const getInitials = (name) => {
     const names = name.split(' ');
     let initials = '';
     // names.forEach((n) => (initials += n[0].toUpperCase()));
@@ -80,5 +73,4 @@ doc?.addEventListener("submit", userValidation);
 
 
 
-export  {userEmail,getInitials};
-// module.exports = {getInitials};
+export default {getInitials,logOutFunction};

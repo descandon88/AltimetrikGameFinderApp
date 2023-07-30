@@ -21,15 +21,16 @@ const db_file = 'db.json';
 // server.db = router.db;
 
 
+
+const corsRestrictions = {
+  origin: 'http://127.0.0.1:5500',
+};
+
 app.use(express.json());
 
-app.use(cors());
 
+app.use(cors(corsRestrictions));
 
-// app.use('/users', middlewares);
-// app.use('/users', auth);
-// app.use('/login', middlewares);
-// app.use('/login', auth);
 
 app.get('/users',(req,res)=>{
     const usersData = fs.readFileSync(db_file, 'utf8');
@@ -39,7 +40,7 @@ app.get('/users',(req,res)=>{
     return res.json(users); 
 })
 
-app.post('/users', (req, res) => {
+app.post('/registers', (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
     return res.status(400).json({ error: 'Email and password are required.' });
@@ -67,7 +68,6 @@ app.post('/users', (req, res) => {
   };
 
 
-//   newUser.token = token;
 
   users.push(newUser);
 
@@ -101,14 +101,14 @@ app.post('/login', (req, res) => {
     // Find the user by email
     const user = users.find((user) => user.email === email);
     if (!user) {
-      return res.status(404).json({ error: 'User not found.' });
+      return res.status(401).json({ error: 'User not found.' });
     }
   
     // Compare the provided password with the stored encrypted password
     const isPasswordValid = bcrypt.compareSync(password, user.password);
   
-    if (!isPasswordValid) {
-      return res.status(401).json({ error: 'Invalid password.' });
+    if (!isPasswordValid || !user) {
+      return res.status(401).json({ error: 'Invalid credentials. The user/password are incorrect.' });
     }
   
     // If the password is valid, generate a new JWT token and send it in the response

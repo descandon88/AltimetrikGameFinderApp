@@ -1,8 +1,10 @@
 import { bigViewGameCard, multipleViewGameCard } from "./cards_design.js";
 import {filterGames, saveText} from "./searchBar.js";
 import { modalDesign  } from "./modal.js";
-import { getInitials } from "../LoginScreenView/js/login.js";
+import { getInitials, logOutFunction } from "../LoginScreenView/js/login.js";
 const userEmail = localStorage.getItem("userEmail");
+const userToken = localStorage.getItem("token");
+
 
 // import {getAllGameDataV} from "./request.js";
 const apiKey = '18890cd37d674530a577c605c7d378ff';
@@ -20,8 +22,20 @@ const options = {
 		'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com'
 	}
 };
-if( userEmail) {console.log('Email ingresado:', userEmail);
+// if( userEmail) {console.log('Email ingresado:', userEmail);
+// }
+if( userToken ) {console.log('token ingresado:', userToken);
 }
+
+const logOutlink = document.querySelector(".logOutLink");
+logOutlink.addEventListener('click',()=>{
+
+  const userToken = localStorage.getItem('token');
+  if(userToken) { 
+  logOutFunction(userToken)
+  }
+});
+
 
 // Llama a la función getInitials utilizando el email guardado
 const initials = getInitials(userEmail);
