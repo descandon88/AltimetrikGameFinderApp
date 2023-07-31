@@ -1,6 +1,6 @@
 import { bigViewGameCard, multipleViewGameCard } from "./cards_design.js";
 import {filterGames, saveText} from "./searchBar.js";
-import { modalDesign  } from "./modal.js";
+import { modalDesign, openModalLogOut, closeModalLogOut  } from "./modal.js";
 import { getInitials, logOutFunction } from "../LoginScreenView/js/login.js";
 const userEmail = localStorage.getItem("userEmail");
 const userToken = localStorage.getItem("token");
@@ -27,14 +27,35 @@ const options = {
 if( userToken ) {console.log('token ingresado:', userToken);
 }
 
-const logOutlink = document.querySelector(".logOutLink");
-logOutlink.addEventListener('click',()=>{
+const logOutBtn = document.querySelector(".logOutLink");
+logOutBtn.addEventListener('click',()=>{
+  openModalLogOut();  
+});
 
-  const userToken = localStorage.getItem('token');
+const logOutBtnRoute = document.querySelector("#logoutBtnYes");
+logOutBtnRoute.addEventListener('click',()=>{
+   const userToken = localStorage.getItem('token');
   if(userToken) { 
   logOutFunction(userToken)
   }
 });
+const logOutBtnNo = document.querySelector("#logOutBtnNo");
+const logOutBtnClose = document.querySelector(".close-logOut");
+
+
+logOutBtnNo.addEventListener('click',()=>{
+  closeModalLogOut();
+});
+logOutBtnClose.addEventListener('click',()=>{
+  closeModalLogOut();
+});
+
+// Change color of Buttons Views
+
+
+
+
+
 
 
 // Llama a la función getInitials utilizando el email guardado
@@ -242,6 +263,9 @@ if (isTrue == false) {
 
 // VIEW BUTTONS
 
+const svgSingleView = document.getElementById('singleViewIcon');
+const svgMultipleView = document.getElementById('multipleViewIcon');
+
 let cardContainer = document.querySelector('.sectionGallery');
 const sectionGallery = document.getElementById('sectionGallery');
 
@@ -326,10 +350,25 @@ setTimeout(()=>{
 //   modal.style.display = 'block';
 // }
 
+const changeSVGColor = (svgId, color) => {
+  const svgIcon = document.getElementById(svgId);
+  svgIcon.setAttribute('fill', color);
+  console.log("Entra el chageSVG color", svgIcon,color);
+};
 
 singleViewButton.addEventListener('click',()=> {
 
   cardContainer.classList.add('singleColumn');
+
+  const currentColor = svgSingleView.getAttribute('fill');
+  console.log("currentColor:",currentColor);
+  if (currentColor === '#707070') {
+    changeSVGColor('singleViewIcon', '#FFFDF5');
+    changeSVGColor('multipleViewIcon', '#707070');
+
+
+  } 
+
   showBigViewCards(searchbar.value);
     modalClick();
 
@@ -337,10 +376,20 @@ singleViewButton.addEventListener('click',()=> {
   setTrue()
 });
 
+
 gridViewButton.addEventListener('click',()=>{
   // setFalse
 
   cardContainer.classList.remove('singleColumn');  
+  const currentColor = svgMultipleView.getAttribute('fill');
+  if (currentColor === '#707070') {
+    console.log("currentColor", currentColor);
+    changeSVGColor('singleViewIcon', '#707070');
+    changeSVGColor('multipleViewIcon', '#FFFDF5');
+
+  } 
+
+
   showList(searchbar.value)
   modalClick();
  

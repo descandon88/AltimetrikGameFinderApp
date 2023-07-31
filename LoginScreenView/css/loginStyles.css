@@ -62,8 +62,12 @@ body {
     
     position: absolute;
     width: 462px;
+    /* width: 24vw; */
+
     height: 702px;
-    left: 878px;
+    /* height: 75vh; */
+
+    /* left: 878px; */
     top: 178px;
 
     background: var(--backgroundLoginColor);
@@ -76,6 +80,26 @@ body {
 .titleSection {display: flex;flex-direction: column; height: 106px; align-items: center; justify-content: center;}
 .loginOptionContainer {display: flex;flex-direction: column; height:265px; align-items:center;
 justify-content: space-evenly; }
+
+@media (max-width: 1124px) {
+    .loginContainer {
+        display: flex;
+        /* position: static; */
+        transform: translate(-50%, -15%);
+        flex-direction: column;
+        justify-content: center;
+        left: 50%;
+     
+
+    }
+    /* .titleSection {
+      /* Aplicar estilos específicos para 1440px */
+    /* } */
+    /* .loginOptionContainer { */
+      /* Aplicar estilos específicos para 1440px */
+    /* }  */
+  }
+  
 
 .inputsContainer {
     display: flex;

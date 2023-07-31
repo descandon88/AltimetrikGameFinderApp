@@ -65,6 +65,12 @@ div.searchBar > input {
 .logOutLink {
   color:white;
 }
+
+.logOutLink:hover,
+.logOutLink:focus {
+  cursor: pointer;
+}
+
 div.logAccount > svg {
 width: 48px;
  /* border: 2px solid rgba(255, 255, 255, 1); */
@@ -218,6 +224,7 @@ input:checked + .slider:before {
     
     
 }
+
 
 
 
@@ -723,3 +730,82 @@ option:hover,  .active{
 .modal-features.col1,.modal-features.col2 > p {
   color:rgba(147,147,147,1);
 }
+
+/***************************/
+/*** MODAL LOGOUT STYLES ***/
+/***************************/
+
+.modal-logOut {
+  display: none;
+  width: 30vw;
+  height: 45vh;
+  background-color: white;
+  z-index:1;
+  top:30vh;
+  left:35vw;
+  position:absolute;
+  border-radius: 10px;
+
+
+}
+
+.modal-content-logOut {
+  background-color: white;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border-radius: 10px;
+  height: 100%;
+
+}
+.modal-content-logOut > h2 {
+  height: 15%;
+  padding: 5%;
+}
+.modal-content-logOut > p {
+  height: 15%;
+  padding: 5%;
+}
+
+#logoutBtnYes, #logOutBtnNo {
+  width: 85%;
+  height: 30px;
+  border-radius: 10px;
+  border: 1px;
+
+}
+#logoutBtnYes {
+  background-color: violet;
+  color: white;
+  margin: 2%;
+}
+#logOutBtnNo {
+  background-color: white;
+  color:violet;
+  border-color: violet ;
+  border: 2px bold;
+  margin: 2%;
+
+}
+#logOutBtnNo:hover,
+#logOutBtnNo:focus  {
+  cursor: pointer;
+}
+#logoutBtnYes:hover,
+#logoutBtnYes:focus {
+  cursor: pointer;
+}
+.close-logOut-container {
+  width: 100%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  margin: 1% 5% 0 0;
+}
+
+.close-logOut {
+font-size:35px;
+cursor: pointer;
+}
+
+
