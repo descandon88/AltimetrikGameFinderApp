@@ -105,7 +105,6 @@ div.textTitle > p {color: var(--light-gray);}
   margin-left: 3vw;
   font-family: 'Archivo' ;
 
-  /* margin-right: 3vw; */
 }
 .modeAndViews {
     display: flex;
@@ -117,8 +116,7 @@ div.textTitle > p {color: var(--light-gray);}
 }
 
 .modeSwitch {
-    /* position: relative;
-    display: inline-block; */
+
     display: flex;
     flex-direction:row-reverse;
     width: 100%;
@@ -277,10 +275,8 @@ div.popularAside > h3 {  font-family: 'Archivo';
   display: flex;
   flex-direction: row;
   align-items: center;
-  /* column-gap: 2% */
   column-gap:10.79px;
   max-height: 30px;
-  /* align-self: center; */
 }
 
 h4.textPopularGames { color:white; }
@@ -297,8 +293,7 @@ h4.textPopularGames { color:white; }
   column-gap: 1%;
   align-items: center;
 }
-  /* grid-template-columns: repeat(auto-fit, minmax(363px, 1fr)); 
-  gap: 24px; */
+
 
 .gameCard {
   width: 75%;
@@ -372,17 +367,13 @@ h4.textPopularGames { color:white; }
   color:white;
   display:flex;
   flex-direction: column;
-  /* justify-content: flex-end;  */
   align-items:  flex-end;
-  /* align-content: flex-end; */
   height: 100%;
   column-gap: 2%;
   justify-content: center;
 
-  /* width: 100%; */
-
-
 }
+
 .dateLabel .genresLabel {
   display:flex;
   align-items: center;
@@ -390,11 +381,7 @@ h4.textPopularGames { color:white; }
   align-content: flex-start;
 }
 
-/* .dateReleased { 
-  /* height: 100%; */
-  /* display:flex;
-  align-items: center;
-} */ */
+
 .genresList .dateReleased {
   width: 100%;
   height: 100%;
@@ -408,14 +395,12 @@ h4.textPopularGames { color:white; }
 /*  VIEW BUTTONS */
 
 .multipleView .gameCard {
-  /* Estilos específicos para la vista de cuadrícula */
   display: inline-block;
   width: calc(33.33% - 10px);
   margin-right: 10px;
 }
 
 .singleView .gameCard {
-  /* Estilos específicos para la vista individual */
   width: 100%;
 }
 
@@ -426,7 +411,6 @@ h4.textPopularGames { color:white; }
 }
 
 .singleColumn .gameCard {
-  /* Ajusta el tamaño de la tarjeta según tus necesidades */
   width: 697px;
   height: 538px;
 }
@@ -467,7 +451,7 @@ h4.textPopularGames { color:white; }
 .productContentRow2-bigCards {
   color:white;
   display: -webkit-box;
-  -webkit-line-clamp: 4; /* Número de líneas a mostrar */
+  -webkit-line-clamp: 4; 
   -webkit-box-orient: vertical;
   overflow: hidden;
   text-overflow: ellipsis;
@@ -475,16 +459,7 @@ h4.textPopularGames { color:white; }
 
 /*DATALIST FOR SEARCHES LIST*/
 datalist {
-  /* position: absolute;
-  background-color: white;
-  border: 1px solid blue;
-  border-radius: 0 0 5px 5px;
-  border-top: none;
-  font-family: sans-serif;
-  width: 340px;
-  padding: 5px;
-  max-height: 10rem;
-  overflow-y: auto */
+
   max-height: 20em;
   border: 0 none;
   overflow-x: hidden;
@@ -506,7 +481,6 @@ option {
   color: blue;
   margin-bottom: 1px;
   font-size: 18px;
-  /* cursor: pointer; */
 }
 
 option:hover,  .active{
@@ -517,25 +491,18 @@ option:hover,  .active{
 
 
 .modal {
-  display: none; /* Ocultar el modal por defecto */
+  display: none; 
   position: fixed;
-  /* z-index: 9999;
+
+  z-index: 1; 
+  /* padding-top: 100px; */
   left: 0;
   top: 0;
-  width: 100%;
-  height: 100%;
-  overflow: auto;
-  background-color: rgba(0, 0, 0, 0.4); */
-  z-index: 1; /* Sit on top */
-  padding-top: 100px; /* Location of the box */
-  left: 0;
-  top:0;
   width: 100%; 
   height: 100%; 
-  overflow: auto; /* Enable scroll if needed */
-  background-color: rgb(0,0,0); /* Fallback color */
+  overflow: hidden; /* Enable scroll if needed */
+  /* background-color: rgb(0,0,0); Fallback color */
   background-color: rgba(0,0,0,0.7); /* Black w/ opacity */
-  /* transition-duration:2s; */
 }
 
 
@@ -544,19 +511,7 @@ option:hover,  .active{
   width: 100%;
   height: 100%;
 }
-/* .gameCard-modal:target {
-  display: none;
-} */
-/* .modal-header{
-  width: 100%;
-  height: 40%;
-} */
 
-/* div.modal-header > img {
-
-  width: 100%;
-  height: 100%;
-} */
 
 .user-icon {
   width: 60px;
@@ -572,8 +527,9 @@ option:hover,  .active{
 /*MODAL STYLES*/
 
 .modal-content {
+  top:25px;
   background-color: #fff;
-  margin: 10% auto;
+  margin: 8% auto;
   padding: 0%;
   border: 1px solid #888;
   width: 1076px;
@@ -596,8 +552,7 @@ option:hover,  .active{
   font-size: 28px;
   font-weight: bold;
   margin: 2% 2% 0 0;
-  /* width: 5%;
-  height: 5%; */
+
 }
 .close > p {
   font-size: 58px;
@@ -611,7 +566,6 @@ option:hover,  .active{
 }
 
 .modal-title {
-  /* width: 50%; */
   height:46%;
   align-items: center;
   
@@ -666,7 +620,6 @@ option:hover,  .active{
   display: -webkit-box;
   flex-direction: column;
   justify-content: center;
-  /* margin: 5%; */
   margin: 2% 0 0 3%;
 
   -webkit-line-clamp: 4;
@@ -716,8 +669,6 @@ option:hover,  .active{
   flex-direction: row;
   justify-content: center;
   height: 60%;
-
-
 }
 
 .modal-features.col1,.modal-features.col2 {

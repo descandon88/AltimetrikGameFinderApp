@@ -4,9 +4,9 @@ import { modalDesign, openModalLogOut, closeModalLogOut  } from "./modal.js";
 import { getInitials, logOutFunction } from "../LoginScreenView/js/login.js";
 const userEmail = localStorage.getItem("userEmail");
 const userToken = localStorage.getItem("token");
+let gameObj = [];
+let gameArray2 = [];
 
-
-// import {getAllGameDataV} from "./request.js";
 const apiKey = '18890cd37d674530a577c605c7d378ff';
 
 const url = `https://rawg-video-games-database.p.rapidapi.com/games?key=${apiKey}&platforms=18,1,7`;
@@ -22,8 +22,8 @@ const options = {
 		'X-RapidAPI-Host': 'rawg-video-games-database.p.rapidapi.com'
 	}
 };
-// if( userEmail) {console.log('Email ingresado:', userEmail);
-// }
+
+// little console.log to confirm if the token have been passed
 if( userToken ) {console.log('token ingresado:', userToken);
 }
 
@@ -50,17 +50,11 @@ logOutBtnClose.addEventListener('click',()=>{
   closeModalLogOut();
 });
 
-// Change color of Buttons Views
 
 
-
-
-
-
-
-// Llama a la función getInitials utilizando el email guardado
+// Call getInitials function 
 const initials = getInitials(userEmail);
-console.log('Iniciales del email:', initials);
+console.log('email/user initials:', initials);
 document.getElementById('userInitials').textContent  = initials;
 
 
@@ -99,7 +93,7 @@ const getGameDescription = async (games, apiKey) => {
     const gameDetail = await Promise.all(gamePromises);
     const orderedResults = gameDetail.sort((a, b) => a.index - b.index);
     const finalResults = orderedResults.map(result => result.result);
-    console.log("Order2: ", finalResults);
+    // console.log("Order2: ", finalResults);
     return finalResults;
   } catch (error) {
     console.log(error);
@@ -107,7 +101,7 @@ const getGameDescription = async (games, apiKey) => {
   }
 };
 
-// Función para actualizar la lista desplegable (datalist) con los valores almacenados en el localStorage
+// Function to update the localStorage of the games searched (datalist)
 const updateDataList =()=> {
   let  dataList = document.getElementById("mySearchList");
   dataList.innerHTML = "";
@@ -123,11 +117,10 @@ const updateDataList =()=> {
   }
 }
 window.addEventListener('load', ()=> {
-  // Obtener el ancho del input
+ 
   let input = document.getElementById('searchbarId');
   let inputWidth = window.getComputedStyle(input).width;
 
-  // Aplicar el mismo ancho al datalist
   let datalist = document.getElementById('mySearchList');
   datalist.style.width = inputWidth;
 });
@@ -142,9 +135,7 @@ document.getElementById("searchbarId").addEventListener("keypress", updateDataLi
 
 
 
-// function showList(searchTerm){
-let gameObj = [];
-let gameArray2 = [];
+
 
 
 
@@ -153,54 +144,62 @@ if (gameArray.length === 0) {
     try {
       gameObj = await getApiGames();
       // gameArray2=  await getGameDescription(gameArray, apiKey);
-
-      console.log("Game array del show List: ", gameObj.length);
     } catch (error) {
       console.error('Error fetching games:', error);
     }
-  }
-  console.log("Game array del show List: ", gameObj.length);
- 
+  } 
   let filteredGames = filterGames(gameObj, searchTerm);
-  multipleViewGameCard(filteredGames);
 
+  // if (filteredGames !=0) { 
+    multipleViewGameCard(filteredGames);
+    modalClick(modalDesign)
+  // }
+  // else {
+  //   console.log("Game Not Exist!");
+  //   // alert("Game Not Exist!");
+
+  // }
 }
 
-showList();
 
 
-// const executeArrayDetailed = async ()=>{
-  const executeArrayDetailed =  ()=>{
-  // if (gameArray.length === 0) { 
-    // showList();
+  const executeObjectDetailed =  ()=>{
 
-    console.log("Se inicia el exceuteArrayDetailed");
-    // await delay(1600);
-    // gameArray2 =  await getGameDescription(gameArray, apiKey);
 
     return new Promise ((resolve)=>{
       setTimeout(async()=>{
         gameArray2 =  await getGameDescription(gameArray, apiKey);
       resolve(gameArray2);
-      console.log("qu[e hay aqui",gameArray2[1]);
-
-      console.log("Se termina  el exceuteArrayDetailed");
+      // console.log("Se termina  el exceuteArrayDetailed");
 
     },1600);
     });
 
   };
+  // showList();
 
-  executeArrayDetailed();
+  // executeObjectDetailed();
+// Execute async functions since the begining...
+  showList()
+  .then(() => executeObjectDetailed())
+  .then(()=>modalClick(modalDesign))
+  .then(() => {
+    console.log("All functions initial have been executed");
+  })
+  .catch((error) => {
+    console.error("Error", error);
+  });
+
+// ASYNC FUNCTION FOR BIG VIEW CARDS  
 
 const showBigViewCards = async (searchTerm)=>{
-  console.log("Cuánto hay aquí gameArray",gameArray);
+  // console.log("Cuánto hay aquí gameArray",gameArray);
 
   if (gameArray2.length == 0 ) {
     
       try {
         gameArray2 =  await getGameDescription(gameArray, apiKey);
-        console.log("Game array2 fetched: ", gameArray2.length);
+        // console.log("Game array2 fetched: ", gameArray2.length);
       } catch (error) {
         console.error('Error fetching games:', error);
       }
@@ -208,7 +207,8 @@ const showBigViewCards = async (searchTerm)=>{
     }
   let filteredGames = filterGames(gameArray2, searchTerm);
   bigViewGameCard(filteredGames);
-    
+  modalClick(modalDesign)
+   
 }
 
 
@@ -216,48 +216,38 @@ let isTrue = false;
 
 const setTrue = () => {
   isTrue = true;
-  console.log('isTrue:',isTrue);
+  // console.log('isTrue:',isTrue);
 
-  console.log('Estado cambiado a true', isTrue);
+  // console.log('Estado cambiado a true', isTrue);
   searchbar.addEventListener('keyup',  (e) => {
     let searchTerm = e.target.value;
-    console.log("searchTerm: ",searchTerm);
+    // console.log("searchTerm: ",searchTerm);
     showBigViewCards(searchTerm);
   })
 };
 
 const setFalse = () => {
   isTrue = false;
-  console.log('Estado cambiado a false',isTrue);
+  // console.log('Estado cambiado a false',isTrue);
   searchbar.addEventListener('keyup',  (e) => {
     let searchTerm = e.target.value;
-    console.log("searchTerm: ",searchTerm);
+    // console.log("searchTerm: ",searchTerm);
     showList(searchTerm);
 });
 }
 
-if (isTrue == false) { 
-  // showList()
-  // showBigViewCards();
-
-  console.log('isTrue:',isTrue);
+if (setFalse) { 
   searchbar.addEventListener('keyup',  (e) => {
     let searchTerm = e.target.value;
-    console.log("searchTerm: ",searchTerm);
+    // console.log("searchTerm: ",searchTerm);
     showList(searchTerm);
   })
-// }
-// else {
-//   // searchTerm = e.target.value;
-//   console.log('isTrue:', isTrue);
-
-//   showBigViewCards(searchTerm);
-//   searchbar.addEventListener('keyup',  () => {
-//     // searchTerm = e.target.value;
-
-//     console.log("searchTerm: ",searchTerm);
-//     showBigViewCards(searchTerm);
-//   })
+} else if(setTrue) {
+  searchbar.addEventListener('keyup',  (e) => {
+    let searchTerm = e.target.value;
+    // console.log("searchTerm: ",searchTerm);
+    showBigViewCards(searchTerm);
+  })
 }
 
 
@@ -275,115 +265,73 @@ let gridViewButton = document.querySelector('.multipleView');
 const modal = document.querySelector('.modal');
 const modalContent = document.getElementById('modal-Content');
 let  closeBtn = '';
-// if (modalHTML){ 
-//  let closeBtn = document.querySelector('.close');
-//  closeBtn.addEventListener('click', ()=> {
-//   console.log("se hace click en el closeBtn o no? ");
-//   modal.style.display = 'none';
-// });
-// }
-// let  btnCard;
 
-// setTimeout(()=>{ 
+
 const modalClick = (modalDesignFn)=> {  
-  console.log("funciona el click");
+  // console.log("funciona el click modal");
  const btnCard = document.querySelectorAll(".gameCard");
-  // console.log("gameCard btnCard",  btnCard);
-  // console.log("gameArray2:",gameArray2);
+
   btnCard.forEach((card) => {
     const container = card;
-    // console.log("card",card);
     let gameName ='';
     container.addEventListener('click', (event)=> {
       const targetcard = event.target;
    
 
-      console.log("click", targetcard);
       gameName = card.querySelector('.gameName').textContent;
 
-      console.log("gameName", gameName);
-      // const selectedGame = gameArray2.find((game) => game.nombre === gameName);
 
 
 
    if (targetcard.matches('img')||targetcard.matches('h4')||targetcard.matches('div')||targetcard.matches('p')||targetcard.matches('h2')) {
-    // if (selectedGame) {
-      console.log("click matches");
       modal.style.display = 'block';
       let modalHTML = '';
 
       modalDesignFn(gameName,gameArray2,modal,modalHTML); 
       }
       else {
-        console.log("no entra el matches");
-        // modal.style.display = 'block';
+        console.log("matches don't get in");
 
       }
     });
     
   });
 } 
-// modalClick();
-// },1700);
-setTimeout(()=>{ 
-  modalClick(modalDesign);
-},3000);
 
 // setTimeout(()=>{ 
-//   btnCard.forEach((card) => {
-//     card.addEventListener('click', (event)=> {
-//       const targetcard = event.target;
-//       console.log("click");
-
-//       if (targetcard.matches('.gameCard')) {
-  
-//         modal.style.display = 'block';
-//       }
-//     });
-//   });
-// },1700);
-//Cerrar el modal al hacer clic en el botón de cerrar
+//   modalClick(modalDesign);
+// },3000);
 
 
-// function showModal(item) {
-//   modalBody.textContent = item.description;
-//   modal.style.display = 'block';
-// }
 
 const changeSVGColor = (svgId, color) => {
   const svgIcon = document.getElementById(svgId);
   svgIcon.setAttribute('fill', color);
-  console.log("Entra el chageSVG color", svgIcon,color);
 };
 
 singleViewButton.addEventListener('click',()=> {
-
+  setTrue();
   cardContainer.classList.add('singleColumn');
 
   const currentColor = svgSingleView.getAttribute('fill');
-  console.log("currentColor:",currentColor);
+
   if (currentColor === '#707070') {
     changeSVGColor('singleViewIcon', '#FFFDF5');
     changeSVGColor('multipleViewIcon', '#707070');
-
-
   } 
 
   showBigViewCards(searchbar.value);
-    modalClick();
+  modalClick(modalDesign)
 
-  isTrue = true; 
-  setTrue()
 });
 
 
 gridViewButton.addEventListener('click',()=>{
-  // setFalse
-
+  setFalse();
   cardContainer.classList.remove('singleColumn');  
+
   const currentColor = svgMultipleView.getAttribute('fill');
   if (currentColor === '#707070') {
-    console.log("currentColor", currentColor);
     changeSVGColor('singleViewIcon', '#707070');
     changeSVGColor('multipleViewIcon', '#FFFDF5');
 
@@ -391,13 +339,8 @@ gridViewButton.addEventListener('click',()=>{
 
 
   showList(searchbar.value)
-  modalClick();
+  modalClick(modalDesign)
  
-
-  // showList();
-  setFalse();
-  // isTrue = false; 
-
 });
 
 

@@ -1,14 +1,9 @@
 let gameCardmodal = '';
-// export let modalHTML = '';
 
 export const modalDesign = (gameCardClicked, gameArray, modalObj, modalHTML ) => {
-  // let modalHTML = '';
-  console.log("que llega a la función:",gameCardClicked );
+  // console.log("que llega a la función:",gameCardClicked );
 
     const selectedGame = gameArray.find((game) => game.name === gameCardClicked);
-
-    // console.log("que llega a la gameArray dentro de modal design:",selectedGame );
-
 
     modalHTML+= '<div class="gameCard-modal"  style="background-image: linear-gradient(to bottom, rgba(0, 0, 0, 0.5), black 70%),url(\'' + selectedGame.background_image + '\'); background-size: contain;   border-radius: 14px; height:100%; width:100%;">\
     <div class="modal-header"> \
@@ -50,7 +45,6 @@ export const modalDesign = (gameCardClicked, gameArray, modalObj, modalHTML ) =>
    document.getElementsByClassName('modal-content')[0].innerHTML = modalHTML;
 
   return new Promise((resolve)=>{
-    // let modal = document.querySelector('.modal');
 
     let closeBtn = document.querySelector('.close');
     let  gameCardModal = document.querySelector('.gameCard-modal');
@@ -78,7 +72,6 @@ let closeBtn = document.querySelector('.close');
 if (closeBtn){ 
   let closeBtn = document.querySelector('.close');
   closeBtn.addEventListener('click', ()=> {
-      // console.log("se hace click en el closeBtn o no? ");
    modal.style.display = 'none';
  });
  }
@@ -90,4 +83,4 @@ if (closeBtn){
   document.querySelector('.modal-logOut').style.display='block';
  }
 
- export default {modalDesign,closeModalLogOut,openModalLogOut };
+ export default { modalDesign,closeModalLogOut,openModalLogOut };

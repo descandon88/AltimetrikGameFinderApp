@@ -13,12 +13,6 @@ const secretKey = 'secret_key';
 const db_file = 'db.json';
 
 
-// app.use(express.static(path.join(__dirname, 'client')));
-// const server = jsonServer.create();
-// const router = jsonServer.router(db_file);
-// const middlewares = jsonServer.defaults();
-
-// server.db = router.db;
 
 
 

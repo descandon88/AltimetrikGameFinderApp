@@ -1,10 +1,10 @@
-//***FILTER FUNCTION FOR GAME LIST ***///
+/***FILTER FUNCTION FOR GAME LIST **/
 
-export const filterGames=(games, searchTerm)=> {
-    // let gamesArray=[];
+export const filterGames=(games, searchGame)=> {
+    // console.log("qué entra en el search game", searchGame)
       const filtergames = games.filter(game =>{ 
         if ( 
-          game.name.toLowerCase().includes(searchTerm)
+          game.name.toLowerCase().includes(searchGame)
   
         ) return true;
       
@@ -14,13 +14,12 @@ export const filterGames=(games, searchTerm)=> {
         }
       }
       )
-      console.log("Filter games: ", filtergames.length);
-      console.log(" games: ", games);
 
-      if (searchTerm !="" && filtergames.length >0 ) 
+      if (searchGame !="" && filtergames.length >0 ) 
       {  
-        return filtergames 
+        return filtergames; 
       }
+      // else if(searchGame===undefined)
       else
       { 
         return games
@@ -31,10 +30,8 @@ export const filterGames=(games, searchTerm)=> {
 export const saveText=(event) =>{
     if (event.key === "Enter") {
       let inputValue = document.getElementById("searchbarId").value;
-      // let inputValue = searchbar;
   
       if (inputValue.trim() !== "") {
-        // Verificar si el valor ya existe en el localStorage antes de guardarlo
         let storedValues = localStorage.getItem("myValues");
         let values = storedValues ? JSON.parse(storedValues) : [];
   

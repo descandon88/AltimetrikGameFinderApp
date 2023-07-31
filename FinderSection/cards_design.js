@@ -1,8 +1,7 @@
 let cardHTML = '' ;
 
-
 export const multipleViewGameCard = (games) => {
-    console.log(games);
+    // console.log('qué entra a multiple View ?',games);
     cardHTML = '';
       cardHTML = games.map((element, index) => {
         let key = index +1;

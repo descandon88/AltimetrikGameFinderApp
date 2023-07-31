@@ -1,6 +1,5 @@
 const doc=document.querySelector(".inputsContainer");
 let userEmail = '';
-// let initials = '';
 
 
 const userValidation = async(event) =>{
@@ -24,7 +23,7 @@ const userValidation = async(event) =>{
     // localStorage.setItem("userEmail", userEmail);
     localStorage.setItem('token',userToken);
 
-    window.location.href = "../FinderSection/finder.html";
+    window.location.href = "../FinderSection/gamesGallery.html";
 
     } 
     else if (response.status === 401) {

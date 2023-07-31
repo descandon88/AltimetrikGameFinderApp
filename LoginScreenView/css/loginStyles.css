@@ -11,10 +11,11 @@
 body {
     background-image: url("../img/img_background/BG@3x.png");
       /* Full height */
-    height: 100vh;
+    /* min-height: 75vh; */
+    height: 120vh;
     font-family: 'Archivo';
-  /* Center and scale the image nicely */
-  background-size: cover;
+    background-size:  100% calc(70vh + 50vh),cover;
+
 
     background-position: center;
     background-repeat: no-repeat;
@@ -62,14 +63,9 @@ body {
     
     position: absolute;
     width: 462px;
-    /* width: 24vw; */
-
     height: 702px;
-    /* height: 75vh; */
-
     /* left: 878px; */
     top: 178px;
-
     background: var(--backgroundLoginColor);
     background-blend-mode: overlay;
     backdrop-filter: blur(5px);
@@ -85,19 +81,57 @@ justify-content: space-evenly; }
     .loginContainer {
         display: flex;
         /* position: static; */
-        transform: translate(-50%, -15%);
+        transform: translate(-50%, 0%);
         flex-direction: column;
         justify-content: center;
         left: 50%;
      
 
     }
-    /* .titleSection {
-      /* Aplicar estilos específicos para 1440px */
-    /* } */
-    /* .loginOptionContainer { */
-      /* Aplicar estilos específicos para 1440px */
-    /* }  */
+    .logoContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: 0;
+
+    }
+  }
+
+  @media (max-width: 320px) {
+    .loginContainer {
+        display: flex;
+        /* position: static; */
+        transform: translate(0%, 0%);
+        flex-direction: column;
+        justify-content: center;
+        left: 0%;
+     
+
+    }
+    .logoContainer {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        margin-left: 0;
+
+    }
+    body {
+        width: 320px;
+        height:767px;
+
+
+
+    }
+    .loginContainer {
+        width: 100%;
+        height: 100%;
+    }
+    .inputsContainer {
+   
+       height: 20%;
+    
+    }
+
   }
   
 
