@@ -76,6 +76,10 @@ width: 48px;
  /* border: 2px solid rgba(255, 255, 255, 1); */
 }
 
+.textTitle {
+  width: 40%;;
+}
+
 div.textTitle > h1 {color: var(--white);}
 div.textTitle > p {color: var(--light-gray);}
 
@@ -288,11 +292,21 @@ h4.textPopularGames { color:white; }
 
   display:grid;
   grid-template-columns: repeat(3, 1fr);
-  column-gap: 1%;
-  row-gap: 1%;
-  column-gap: 1%;
+  column-gap: 0.5%;
+  row-gap: 0.5%;
   align-items: center;
 }
+@media (max-width: 1600px) {
+  .sectionGallery {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .gameCard {
+    width: 85%;
+
+  }
+}
+
+
 
 
 .gameCard {
@@ -302,6 +316,16 @@ h4.textPopularGames { color:white; }
   border-radius: 24px;
   align-self: center;
   justify-self: center;
+}
+
+@media (max-width: 1295px) {
+  .sectionGallery {
+    grid-template-columns: repeat(1, 1fr);
+  }
+  .gameCard {
+    width: 45%;
+
+  }
 }
 
 .gameCard:hover,

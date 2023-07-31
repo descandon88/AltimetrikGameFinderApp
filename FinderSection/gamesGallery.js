@@ -251,20 +251,20 @@ if (setFalse) {
 }
 
 
-// VIEW BUTTONS
+// GETTING ELEMENTS AS BUTTONS AND CONTAINERS
 
 const svgSingleView = document.getElementById('singleViewIcon');
 const svgMultipleView = document.getElementById('multipleViewIcon');
 
 let cardContainer = document.querySelector('.sectionGallery');
-const sectionGallery = document.getElementById('sectionGallery');
+// const sectionGallery = document.getElementById('sectionGallery');
 
 let singleViewButton = document.querySelector('.singleView');
 let gridViewButton = document.querySelector('.multipleView');
 
 const modal = document.querySelector('.modal');
 const modalContent = document.getElementById('modal-Content');
-let  closeBtn = '';
+// let  closeBtn = '';
 
 
 const modalClick = (modalDesignFn)=> {  
@@ -276,13 +276,7 @@ const modalClick = (modalDesignFn)=> {
     let gameName ='';
     container.addEventListener('click', (event)=> {
       const targetcard = event.target;
-   
-
       gameName = card.querySelector('.gameName').textContent;
-
-
-
-
    if (targetcard.matches('img')||targetcard.matches('h4')||targetcard.matches('div')||targetcard.matches('p')||targetcard.matches('h2')) {
       modal.style.display = 'block';
       let modalHTML = '';
@@ -298,16 +292,12 @@ const modalClick = (modalDesignFn)=> {
   });
 } 
 
-// setTimeout(()=>{ 
-//   modalClick(modalDesign);
-// },3000);
-
-
-
 const changeSVGColor = (svgId, color) => {
   const svgIcon = document.getElementById(svgId);
   svgIcon.setAttribute('fill', color);
 };
+
+
 
 singleViewButton.addEventListener('click',()=> {
   setTrue();
