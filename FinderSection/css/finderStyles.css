@@ -73,7 +73,6 @@ div.searchBar > input {
 
 div.logAccount > svg {
 width: 48px;
- /* border: 2px solid rgba(255, 255, 255, 1); */
 }
 
 .textTitle {
@@ -102,7 +101,6 @@ div.textTitle > p {color: var(--light-gray);}
     line-height: 52.22px;
     font-size: 48px;
     margin-bottom: 2%;
-    /* margin-right: 3vw; */
 }
 .textTitle >p {
   width: 90%;
@@ -547,8 +545,10 @@ option:hover,  .active{
   line-height: 60px;
   border-radius: 50%;
 }
+/*********************/
+/**MODAL CARD STYLES**/
+/********************/
 
-/*MODAL STYLES*/
 
 .modal-content {
   top:25px;
