@@ -2,8 +2,7 @@ const express = require('express');
 const bcrypt = require('bcryptjs');
 const jwt = require('jsonwebtoken');
 const cors = require('cors');
-// const jsonServer = require('json-server');
-// const auth = require('json-server-auth');
+
 
 const fs = require('fs');
 const app = express();
@@ -13,27 +12,22 @@ const secretKey = 'secret_key';
 const db_file = 'db.json';
 
 
-
-
-
 const corsRestrictions = {
   origin: 'http://127.0.0.1:5500',
 };
 
 app.use(express.json());
-
-
 app.use(cors(corsRestrictions));
 
 
+// method for request all the users that are in the db.json file
 app.get('/users',(req,res)=>{
     const usersData = fs.readFileSync(db_file, 'utf8');
     const users = JSON.parse(usersData).users;
-  
-    // Enviar todos los usuarios en la respuesta
-    return res.json(users); 
+      return res.json(users); 
 })
 
+// method for register a new user in the db.json file
 app.post('/registers', (req, res) => {
   const { email, password } = req.body;
   if (!email || !password) {
@@ -73,7 +67,7 @@ app.post('/registers', (req, res) => {
   return res.json({ newUser, token });
 });
 
-
+// Method to login in the game finder app
 app.post('/login', (req, res) => {
 
     console.log('POST /login');
